@@ -1,0 +1,49 @@
+global_seed: 42
+robot:
+  name: ur5e_full
+  model_xml: third_party/mujoco_menagerie/universal_robots_ur5e/scene.xml
+  ee_site: attachment_site
+  joint_names: [shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint]
+  q_start: [-1.5708, -1.5708, 1.5708, -1.5708, -1.5708, 0.0]
+experiment:
+  demo_scene: scene_pass_through_maze
+  edge_resolution: 0.06
+  random_obstacles:
+    enabled: false
+    count: 4
+    max_attempts: 50
+    replace_existing: true
+    path_fraction_range: [0.36, 0.64]
+    lateral_offset_range: [-0.12, 0.12]
+    z_range: [0.18, 0.38]
+    box_size_min: [0.12, 0.14, 0.24]
+    box_size_max: [0.22, 0.24, 0.42]
+ik:
+  demo_method: scipy_baseline
+  methods: [pinv, dls, lm, scipy_baseline]
+  max_iterations: 160
+  tolerance: 0.012
+  orientation_tolerance_rad: 0.12
+  orientation_weight: 0.35
+  step_scale: 0.65
+  damping: 0.08
+planners:
+  demo_method: rrt_connect
+  methods: [rrt, rrt_connect, prm, apf]
+  max_iterations: 1600
+  step_size: 0.20
+  goal_tolerance: 0.22
+  goal_bias: 0.50
+  prm_samples: 220
+  prm_neighbors: 14
+  apf_step_size: 0.045
+  apf_attractive_gain: 1.0
+  apf_repulsive_gain: 0.018
+  apf_repulsive_radius: 0.35
+trajectory:
+  shortcut_iterations: 80
+  samples: 80
+rerun:
+  enabled: true
+  spawn: false
+  recording_path: results/recordings/arm_planning.rrd

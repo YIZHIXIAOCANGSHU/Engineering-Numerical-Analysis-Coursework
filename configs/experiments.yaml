@@ -1,0 +1,31 @@
+experiment:
+  trials: 50
+  edge_resolution: 0.06
+  demo_scene: scene_pass_through_maze
+ik:
+  methods: [pinv, dls, lm, scipy_baseline]
+  max_iterations: 160
+  tolerance: 0.012
+  orientation_tolerance_rad: 0.12
+  orientation_weight: 0.35
+  step_scale: 0.65
+  damping: 0.08
+planners:
+  methods: [rrt, rrt_connect, prm, apf]
+  max_iterations: 1200
+  step_size: 0.20
+  goal_tolerance: 0.22
+  goal_bias: 0.18
+  prm_samples: 150
+  prm_neighbors: 10
+  apf_step_size: 0.045
+  apf_attractive_gain: 1.0
+  apf_repulsive_gain: 0.018
+  apf_repulsive_radius: 0.35
+trajectory:
+  shortcut_iterations: 80
+  samples: 80
+rerun:
+  enabled: true
+  spawn: false
+  recording_path: results/recordings/arm_planning.rrd

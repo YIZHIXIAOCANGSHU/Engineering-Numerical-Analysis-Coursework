@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="590.4pt" height="331.2pt" viewBox="0 0 590.4 331.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-05-28T06:35:30.811622</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 331.2 
+L 590.4 331.2 
+L 590.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 170.157143 291.521975 
+L 497.711429 291.521975 
+L 497.711429 26.057143 
+L 170.157143 26.057143 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g clip-path="url(#pd0592b9508)">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAABVUAAARTCAYAAABrtMMWAAAhI0lEQVR4nO3awUkdURiG4Ts6GCGQBtJCOpCkAm0kfSSQZcgqDWVvBYLoPupKuHFs4G5euHLI4Xkq+JZz3vmXz5c/th0AR/Ht1+/REwCm8f3L1egJANPY392PngAwlZPRAwAAAAAA/ieiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAASiKgAAAABAIKoCAAAAAATryfPL6A0A07g4968K4Fj2d/ejJwAAwEFe/wAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCIqgAAAAAAgagKAAAAABCs59e3ozcATOPTz6+jJwBM4+Puz+gJAABwkEtVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBgXd6djd4AMI39+230BIB5LMvoBQDz2HynAhyTS1UAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgEBUBQAAAAAIRFUAAAAAgGDdneqqAMeyLaMXAExk20YvAACAgxRVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBAVAUAAAAACERVAAAAAIBg3R4eR28AmMaHm9ELAAAAgLfmUhUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIBBVAQAAAAACURUAAAAAIFj//X0YvQFgGmdPL6MnAAAAAG/MpSoAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQCCqAgAAAAAEoioAAAAAQPAKlt8oy0hUjpYAAAAASUVORK5CYII=" id="imagec273ba5309" transform="scale(1 -1) translate(0 -265.68)" x="170.157143" y="-25.841975" width="327.6" height="265.68"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m8780ff1abd" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m8780ff1abd" x="211.101429" y="291.521975" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif" transform="translate(196.46653 312.227523) rotate(-25)">apf</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m8780ff1abd" x="292.99" y="291.521975" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif" transform="translate(274.494797 313.908659) rotate(-25)">prm</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m8780ff1abd" x="374.878571" y="291.521975" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif" transform="translate(363.461066 310.608275) rotate(-25)">rrt</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m8780ff1abd" x="456.767143" y="291.521975" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif" transform="translate(429.932492 317.797408) rotate(-25)">RRT-C</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_5">
+      <defs>
+       <path id="ma638e3debb" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="45.018917" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="48.998604" transform="rotate(-0 163.157143 48.998604)">scene_00_no_obstacle</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="82.942464" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="86.922152" transform="rotate(-0 163.157143 86.922152)">scene_01_single_box</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="120.866011" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="124.845699" transform="rotate(-0 163.157143 124.845699)">scene_02_multi_obstacles</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="158.789559" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="162.664559" transform="rotate(-0 163.157143 162.664559)">scene_03_narrow_passage</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="196.713106" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="200.692794" transform="rotate(-0 163.157143 200.692794)">scene_04_near_singularity</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="234.636654" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="238.616341" transform="rotate(-0 163.157143 238.616341)">scene_05_mixed_maze_passage</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#ma638e3debb" x="170.157143" y="272.560201" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: end" x="163.157143" y="276.539889" transform="rotate(-0 163.157143 276.539889)">scene_pass_through_maze</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 170.157143 291.521975 
+L 170.157143 26.057143 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 170.157143 291.521975 
+L 497.711429 291.521975 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="47.286417" transform="rotate(-0 211.101429 47.286417)">0.01</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="292.99" y="47.286417" transform="rotate(-0 292.99 47.286417)">3.06</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="47.286417" transform="rotate(-0 374.878571 47.286417)">0.01</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="47.286417" transform="rotate(-0 456.767143 47.286417)">0.00</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="85.209964" transform="rotate(-0 211.101429 85.209964)">0.53</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="292.99" y="85.209964" transform="rotate(-0 292.99 85.209964)">3.65</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="85.209964" transform="rotate(-0 374.878571 85.209964)">0.01</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="85.209964" transform="rotate(-0 456.767143 85.209964)">0.00</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="123.133511" transform="rotate(-0 211.101429 123.133511)">1.00</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="292.99" y="123.133511" transform="rotate(-0 292.99 123.133511)">5.17</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="123.133511" transform="rotate(-0 374.878571 123.133511)">0.02</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="123.133511" transform="rotate(-0 456.767143 123.133511)">0.00</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="161.057059" transform="rotate(-0 211.101429 161.057059)">0.92</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="292.99" y="161.057059" transform="rotate(-0 292.99 161.057059)">5.11</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="161.057059" transform="rotate(-0 374.878571 161.057059)">0.07</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="161.057059" transform="rotate(-0 456.767143 161.057059)">0.01</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="198.980606" transform="rotate(-0 211.101429 198.980606)">0.69</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="292.99" y="198.980606" transform="rotate(-0 292.99 198.980606)">4.60</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="198.980606" transform="rotate(-0 374.878571 198.980606)">0.05</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="198.980606" transform="rotate(-0 456.767143 198.980606)">0.00</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="236.904154" transform="rotate(-0 211.101429 236.904154)">2.41</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="292.99" y="236.904154" transform="rotate(-0 292.99 236.904154)">11.43</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="236.904154" transform="rotate(-0 374.878571 236.904154)">0.02</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="236.904154" transform="rotate(-0 456.767143 236.904154)">0.01</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="211.101429" y="274.827701" transform="rotate(-0 211.101429 274.827701)">2.67</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="292.99" y="274.827701" transform="rotate(-0 292.99 274.827701)">10.39</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="374.878571" y="274.827701" transform="rotate(-0 374.878571 274.827701)">0.92</text>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="456.767143" y="274.827701" transform="rotate(-0 456.767143 274.827701)">0.03</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="333.934286" y="20.057143" transform="rotate(-0 333.934286 20.057143)">Planner time by scene</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_5">
+    <path d="M 518.183571 291.521975 
+L 531.456813 291.521975 
+L 531.456813 26.057143 
+L 518.183571 26.057143 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADcAAARSCAYAAAAErWi8AAAGSUlEQVR4nO3di43bQBAFQX42NIfg/EOxHIUg1ENXBNcQqJklCd395/77uUY9v/4Dvqk41XTcue7dvt2yqzjXuZ/713/D10x/csWpmnOq4lTTcQ1xVXGqhriqONW5mnOm4lTTcee6+0IhFac697Pbt1t2FedqzqmKU03HnashbipO1RBXFafqjrOqONW5e7JqKk41HdcQVxWn6rCqKk7VNacqTjUd11MeVXGqhriqOFXXnKo41XRcXyiq4lQ95VEVp2rOqYpTTcf1qxqq4lQtzqriVC3OquJU03F9oaiKU3XNqYpTdVhVFaeajmuIq4pTnU/XnKk41VnOG04rzjUd1+KsKk7VNacqTtU1pypONR3X3S9VcarufqmKU7U4q4pTTcf1haIqTtVhVVWcqsOqqjhVu6WqONV0XIuzqjjVuXYvue1PrjhVi7OqONV03PkM5w2nFedqiKuKU53P7iW3/ckVp5qOa4irilN1x1lVnKonq6riVNNxvW+pKk7VEFcVp+qwqipONR3XIyxVcaqe8qiKUzXnVMWppuM6iauKU/WfA1XFqVqcVcWppuNanFXFqRriquJUPeVRFaeajmuIq4pTdVhVFadqzqmKU3VYVRWnmo5riKuKU3VYVRWn6qeOVcWppuMa4qriVB1WVcWpuuOsKk41HdcQVxWn6rCqKk7VnFMVp5qOa4irilM1xFXFqZpzquJU03ENcVVxqoa4qjhV/+hLVZxqOq4hripO1WFVVZyqOacqTjUd1xeKqjhVi7OqOFVzTlWcajquIa4qTtUQVxWnas6pilNNxzXEVcWpuuZUxalanFXFqZpzquJU03Hn8+u/4IumP7niVA1xVXGqrjlVcarpuO5+qYpTNcRVxamac6riVNNxDXFVcaquOVVxqhZnVXGq6biGuKo4VdecqjhVi7OqONV0XENcVZyqIa4qTtWcUxWnmo7rC0VVnKrFWVWcqjmnKk5VnKo41XRci7OqOFWLs6o41XRcXyiq4lQtzqriVM05VXGq5pyqONV0XENcVZzqXPfufyyY/uSKU7U4q4pTTce1OKuKU3XNqYpTtTirilNNxzXEVcWpuuZUxal6yqMqTjUd10lcVZyqOFVxqg6rquJU03EtzqriVN39UhWnanFWFaeajusLRVWcqmtOVZyqw6qqONV0XENcVZyqpzyq4lQtzqriVNNxLc6q4lTn7pozFadqcVYVp5qOa3FWFafqmlMVpzrX1eJMKk7VnFMVp5qOO3d3v0zFqRriquJUzTlVcarpuIa4qjhVr0epilP1epSqONV0XCdxVXGqFmdVcarmnKo41XRcd5xVxaka4qriVGd4zG1/csWppuMa4qriVF1zquJUPeVRFaeajjtPQ9xUnKrFWVWcqmtOVZxqOq6TuKo4VYdVVXGqFmdVcarpuPP0m7Km4lQdVlXFqTqsqopTdVhVFaeajmuIq4pTNcRVxamac6riVNNxPeVRFadqcVYVp2pxVhWnmo7rC0VVnKprTlWcqmtOVZxqOq47zqriVA1xVXGqrjlVcarpuL5QVMWpuuZUxam6QaQqTjUd1xBXFac6z/3v13/D10x/csWpmnOq4lTTcZ3EVcWpGuKq4lQdVlXFqabjztsQNxWn6rCqKk7V4qwqTjUd190vVXGq87Y4m4pTtTirilO1W6qKU03H9ZRHVZzqPFeLM6k4VYuzqjjVdNx5G+Km4lQNcVVxqvP2lMdUnGo6rnecVcWpGuKq4lS9HqUqTjUd1zvOquJUDXFVcarmnKo41XRcQ1xVnKrXo1TFqXo9SlWcajquIa4qTtWrGqriVL2SqCpONR3XEFcVp+pXNVTFqfr1KFVxqum47jirilP1epSqOFVzTlWcqsOqqjjVdFx3nFXFqXqyqipO1WFVVZxqOq73LVXFqVqcVcWp+iUbVXGq6bjuOKuKU7U4q4pTtTirilNNx/XTWKriVD02VhWnanFWFaeajmtxVhWnaoirilN1zamKU03Hnef+9Z/wPdOfXHGqhriqONVZrltuK441HXfeFmdTcarzXrsX3fQnV5yqxVlVnGo67rx3Q5xUnOo8Lc6m4lQdVlXFqabjGuKq4lQdVlXFqc4z3LdbdhXnardUFaeajjvvvdu3W3YV52pxVhWn+g82RZOmxynwiAAAAABJRU5ErkJggg==" id="image66cdf15e79" transform="scale(1 -1) translate(0 -265.44)" x="518.16" y="-26.16" width="13.2" height="265.44"/>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_8">
+     <g id="line2d_12">
+      <defs>
+       <path id="m0174b3442f" d="M 0 0 
+L 3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m0174b3442f" x="531.456813" y="245.148636" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_41">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: start" x="538.456813" y="249.128323" transform="rotate(-0 538.456813 249.128323)">2</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m0174b3442f" x="531.456813" y="198.69524" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_42">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: start" x="538.456813" y="202.674927" transform="rotate(-0 538.456813 202.674927)">4</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m0174b3442f" x="531.456813" y="152.241844" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_43">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: start" x="538.456813" y="156.221531" transform="rotate(-0 538.456813 156.221531)">6</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m0174b3442f" x="531.456813" y="105.788448" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_44">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: start" x="538.456813" y="109.768135" transform="rotate(-0 538.456813 109.768135)">8</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m0174b3442f" x="531.456813" y="59.335052" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_45">
+      <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: start" x="538.456813" y="63.314739" transform="rotate(-0 538.456813 63.314739)">10</text>
+     </g>
+    </g>
+    <g id="text_46">
+     <text style="font-size: 10px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="561.516188" y="158.789559" transform="rotate(-90 561.516188 158.789559)">Planning time / s</text>
+    </g>
+   </g>
+   <g id="LineCollection_1"/>
+   <g id="patch_6">
+    <path d="M 518.183571 291.521975 
+L 524.820192 291.521975 
+L 531.456813 291.521975 
+L 531.456813 26.057143 
+L 524.820192 26.057143 
+L 518.183571 26.057143 
+L 518.183571 291.521975 
+z
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd0592b9508">
+   <rect x="170.157143" y="26.057143" width="327.554286" height="265.464832"/>
+  </clipPath>
+ </defs>
+</svg>

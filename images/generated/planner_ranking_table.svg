@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="612pt" height="224.64pt" viewBox="0 0 612 224.64" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-05-28T06:35:47.499423</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 224.64 
+L 612 224.64 
+L 612 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="table_1">
+    <g id="patch_2">
+     <path d="M 10.8 98.042418 
+L 128.88 98.042418 
+L 128.88 82.104982 
+L 10.8 82.104982 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_1">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="69.84" y="92.3412" transform="rotate(-0 69.84 92.3412)">planner</text>
+    </g>
+    <g id="patch_3">
+     <path d="M 128.88 98.042418 
+L 246.96 98.042418 
+L 246.96 82.104982 
+L 128.88 82.104982 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_2">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="187.92" y="92.3412" transform="rotate(-0 187.92 92.3412)">composite_score</text>
+    </g>
+    <g id="patch_4">
+     <path d="M 246.96 98.042418 
+L 365.04 98.042418 
+L 365.04 82.104982 
+L 246.96 82.104982 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_3">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="306" y="92.3412" transform="rotate(-0 306 92.3412)">success_rate</text>
+    </g>
+    <g id="patch_5">
+     <path d="M 365.04 98.042418 
+L 483.12 98.042418 
+L 483.12 82.104982 
+L 365.04 82.104982 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_4">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="424.08" y="92.25745" transform="rotate(-0 424.08 92.25745)">planning_time_p50</text>
+    </g>
+    <g id="patch_6">
+     <path d="M 483.12 98.042418 
+L 601.2 98.042418 
+L 601.2 82.104982 
+L 483.12 82.104982 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_5">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="542.16" y="92.3412" transform="rotate(-0 542.16 92.3412)">min_obstacle_distance_p10</text>
+    </g>
+    <g id="patch_7">
+     <path d="M 10.8 113.979854 
+L 128.88 113.979854 
+L 128.88 98.042418 
+L 10.8 98.042418 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="69.84" y="108.278636" transform="rotate(-0 69.84 108.278636)">RRT-C</text>
+    </g>
+    <g id="patch_8">
+     <path d="M 128.88 113.979854 
+L 246.96 113.979854 
+L 246.96 98.042418 
+L 128.88 98.042418 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="187.92" y="108.278636" transform="rotate(-0 187.92 108.278636)">0.897</text>
+    </g>
+    <g id="patch_9">
+     <path d="M 246.96 113.979854 
+L 365.04 113.979854 
+L 365.04 98.042418 
+L 246.96 98.042418 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="306" y="108.278636" transform="rotate(-0 306 108.278636)">1</text>
+    </g>
+    <g id="patch_10">
+     <path d="M 365.04 113.979854 
+L 483.12 113.979854 
+L 483.12 98.042418 
+L 365.04 98.042418 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="424.08" y="108.278636" transform="rotate(-0 424.08 108.278636)">0.0071</text>
+    </g>
+    <g id="patch_11">
+     <path d="M 483.12 113.979854 
+L 601.2 113.979854 
+L 601.2 98.042418 
+L 483.12 98.042418 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_10">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="542.16" y="108.278636" transform="rotate(-0 542.16 108.278636)">0.0123</text>
+    </g>
+    <g id="patch_12">
+     <path d="M 10.8 129.917289 
+L 128.88 129.917289 
+L 128.88 113.979854 
+L 10.8 113.979854 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="69.84" y="124.216071" transform="rotate(-0 69.84 124.216071)">rrt</text>
+    </g>
+    <g id="patch_13">
+     <path d="M 128.88 129.917289 
+L 246.96 129.917289 
+L 246.96 113.979854 
+L 128.88 113.979854 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_12">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="187.92" y="124.216071" transform="rotate(-0 187.92 124.216071)">0.88</text>
+    </g>
+    <g id="patch_14">
+     <path d="M 246.96 129.917289 
+L 365.04 129.917289 
+L 365.04 113.979854 
+L 246.96 113.979854 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_13">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="306" y="124.216071" transform="rotate(-0 306 124.216071)">0.9</text>
+    </g>
+    <g id="patch_15">
+     <path d="M 365.04 129.917289 
+L 483.12 129.917289 
+L 483.12 113.979854 
+L 365.04 113.979854 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_14">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="424.08" y="124.216071" transform="rotate(-0 424.08 124.216071)">0.189</text>
+    </g>
+    <g id="patch_16">
+     <path d="M 483.12 129.917289 
+L 601.2 129.917289 
+L 601.2 113.979854 
+L 483.12 113.979854 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_15">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="542.16" y="124.216071" transform="rotate(-0 542.16 124.216071)">0.0125</text>
+    </g>
+    <g id="patch_17">
+     <path d="M 10.8 145.854725 
+L 128.88 145.854725 
+L 128.88 129.917289 
+L 10.8 129.917289 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_16">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="69.84" y="140.153507" transform="rotate(-0 69.84 140.153507)">prm</text>
+    </g>
+    <g id="patch_18">
+     <path d="M 128.88 145.854725 
+L 246.96 145.854725 
+L 246.96 129.917289 
+L 128.88 129.917289 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_17">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="187.92" y="140.153507" transform="rotate(-0 187.92 140.153507)">0.599</text>
+    </g>
+    <g id="patch_19">
+     <path d="M 246.96 145.854725 
+L 365.04 145.854725 
+L 365.04 129.917289 
+L 246.96 129.917289 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_18">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="306" y="140.153507" transform="rotate(-0 306 140.153507)">0.98</text>
+    </g>
+    <g id="patch_20">
+     <path d="M 365.04 145.854725 
+L 483.12 145.854725 
+L 483.12 129.917289 
+L 365.04 129.917289 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_19">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="424.08" y="140.153507" transform="rotate(-0 424.08 140.153507)">6.17</text>
+    </g>
+    <g id="patch_21">
+     <path d="M 483.12 145.854725 
+L 601.2 145.854725 
+L 601.2 129.917289 
+L 483.12 129.917289 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_20">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="542.16" y="140.153507" transform="rotate(-0 542.16 140.153507)">0.0135</text>
+    </g>
+    <g id="patch_22">
+     <path d="M 10.8 161.79216 
+L 128.88 161.79216 
+L 128.88 145.854725 
+L 10.8 145.854725 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_21">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="69.84" y="156.143443" transform="rotate(-0 69.84 156.143443)">apf</text>
+    </g>
+    <g id="patch_23">
+     <path d="M 128.88 161.79216 
+L 246.96 161.79216 
+L 246.96 145.854725 
+L 128.88 145.854725 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_22">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="187.92" y="156.090943" transform="rotate(-0 187.92 156.090943)">0.484</text>
+    </g>
+    <g id="patch_24">
+     <path d="M 246.96 161.79216 
+L 365.04 161.79216 
+L 365.04 145.854725 
+L 246.96 145.854725 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_23">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="306" y="156.090943" transform="rotate(-0 306 156.090943)">0.143</text>
+    </g>
+    <g id="patch_25">
+     <path d="M 365.04 161.79216 
+L 483.12 161.79216 
+L 483.12 145.854725 
+L 365.04 145.854725 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_24">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="424.08" y="156.090943" transform="rotate(-0 424.08 156.090943)">1.16</text>
+    </g>
+    <g id="patch_26">
+     <path d="M 483.12 161.79216 
+L 601.2 161.79216 
+L 601.2 145.854725 
+L 483.12 145.854725 
+z
+" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_25">
+     <text style="font-size: 8px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: middle" x="542.16" y="156.090943" transform="rotate(-0 542.16 156.090943)">0.128</text>
+    </g>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'AR PL UMing CN', 'DejaVu Sans', sans-serif; text-anchor: start" x="10.8" y="20.057143" transform="rotate(-0 10.8 20.057143)">Planner ranking overview</text>
+   </g>
+  </g>
+ </g>
+</svg>

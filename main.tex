@@ -1,0 +1,992 @@
+% !TeX program = xelatex
+\documentclass[UTF8,zihao=-4]{ctexart}
+
+\usepackage[a4paper,top=3cm,bottom=2.5cm,left=2.5cm,right=2.5cm,footskip=1.5cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{etoolbox}
+
+\graphicspath{{images/}}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+\renewcommand{\contentsname}{目\quad 录}
+
+\ctexset{
+  section = {
+    format = \centering\zihao{3}\heiti,
+    name = {},
+    number = \arabic{section},
+    aftername = \quad,
+    beforeskip = 1.0em,
+    afterskip = 1.0em
+  },
+  subsection = {
+    format = \zihao{-3}\heiti,
+    name = {},
+    number = \thesection.\arabic{subsection},
+    aftername = \quad,
+    beforeskip = 0.8em,
+    afterskip = 0.6em
+  },
+  subsubsection = {
+    format = \zihao{4}\heiti,
+    name = {},
+    number = \thesubsection.\arabic{subsubsection},
+    aftername = \quad,
+    beforeskip = 0.6em,
+    afterskip = 0.4em
+  }
+}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\linespread{1.38}
+\pagestyle{plain}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\raggedbottom
+\setlength{\floatsep}{0.35em plus 0.1em minus 0.1em}
+\setlength{\textfloatsep}{0.45em plus 0.1em minus 0.1em}
+\setlength{\intextsep}{0.4em plus 0.1em minus 0.1em}
+\setlength{\abovecaptionskip}{0.2em}
+\setlength{\belowcaptionskip}{-0.15em}
+\renewcommand{\topfraction}{0.96}
+\renewcommand{\bottomfraction}{0.92}
+\renewcommand{\textfraction}{0.04}
+\renewcommand{\floatpagefraction}{0.86}
+\captionsetup{font={small,stretch=1.0},labelfont=bf,labelsep=quad,skip=0.18em}
+\captionsetup[subfigure]{skip=0.12em}
+\setlist[itemize]{leftmargin=2.5em,itemsep=0.2em}
+\setlist[enumerate]{leftmargin=2.5em,itemsep=0.2em}
+\Urlmuskip=0mu plus 2mu
+
+\newcommand{\diff}{\mathrm{d}}
+\pretocmd{\section}{\clearpage}{}{}
+
+\title{\bfseries 常微分方程数值解法在无人机集群编队算法中的应用\\
+\large 欧拉法、龙格-库塔法与 Adams-Bashforth 外推的鲁棒性对比}
+\author{
+工程数值分析课程论文\\[0.4em]
+研究主题：无人机集群轨迹预测与编队控制\\
+小组成员：洪竞权、贺禄文、周志鹏、鄢卓\\
+重庆大学卓越工程师学院
+}
+\date{2026 年 5 月}
+
+\begin{document}
+
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{center}
+    \vspace*{0.45cm}
+    {\zihao{4}\heiti 数值分析案例报告\par}
+    \vspace{2.6cm}
+    {\zihao{2}\heiti 常微分方程数值解法在无人机集群\par}
+    \vspace{0.45cm}
+    {\zihao{2}\heiti 编队算法中的应用研究报告\par}
+    \vspace{1.0cm}
+    \includegraphics[width=0.28\textwidth]{cover_logo.jpg}
+  \end{center}
+  \vspace{1.8cm}
+  \begin{center}
+    {\zihao{3}\heiti
+    \begin{tabular}{@{}>{\raggedleft\arraybackslash}p{4.0cm}@{\quad}p{8.2cm}@{}}
+      小组成员： & 洪竞权\quad 贺禄文\quad 周志鹏\quad 鄢卓 \\
+      学\quad 号： & 20234262\quad 20234232\quad 20230647\quad 20232695 \\
+      班\quad 级： & 明月01班 \\
+      指导老师： & 何光辉 \\
+    \end{tabular}
+    }
+  \end{center}
+  \vfill
+  \begin{center}
+    {\zihao{2}\heiti 重庆大学卓越工程师学院\par}
+    \vspace{0.35cm}
+    {\zihao{3}\heiti 2026年5月\par}
+  \end{center}
+\end{titlepage}
+
+\pagenumbering{Roman}
+\begingroup
+  \zihao{-4}
+  \setlength{\parskip}{0pt}
+  \linespread{1.15}\selectfont
+  \tableofcontents
+  \thispagestyle{plain}
+\endgroup
+\newpage
+
+\begin{center}
+  {\zihao{3}\heiti 摘\quad 要\par}
+\end{center}
+\addcontentsline{toc}{section}{摘要}
+\vspace{1em}
+无人机集群在编队飞行、灯光表演、区域巡检和复杂障碍物穿越中，需要在有限机载算力、离散控制周期和不稳定通信链路下维持轨迹连续性。常微分方程（ODE）数值积分连接了连续运动模型与离散飞控执行，也为短时丢包时的邻机状态预测提供了可解释工具。本文结合课程项目仿真参数与采样结果，比较 Euler、四阶 Runge-Kutta（RK4）与二阶 Adams-Bashforth 外推在集群轨迹更新和弱网通信预测中的表现，并补充 rosbag 第一视角采样、二维预测误差、频域稳定性和低通滤波补偿分析。仿真与采样结果表明，在当前课程场景中，Euler 计算代价低但在高动态轨迹中误差积累明显；RK4 适合通信可靠条件下的精细动力学积分；二阶 Adams-Bashforth 能利用历史速度趋势缓解短时通信缺口，但在急转和噪声存在时可能放大高频扰动，因此需要与滤波和通信恢复校正配合使用。上述分析为不同通信质量和运动强度下的积分器选型、弱网预测和输出滤波提供了工程数值分析依据。
+
+\noindent{\heiti 关键词：}无人机集群；常微分方程；欧拉法；RK4；Adams-Bashforth；通信丢包；rosbag；频域稳定性
+\newpage
+
+\pagenumbering{arabic}
+\section{引言}
+
+\subsection{无人机集群控制的工程背景}
+无人机集群控制强调多智能体在统一任务目标下的自主协同。与单机控制相比，集群系统需要同时处理队形保持、路径规划、通信拓扑维护、任务分配与避障等问题。工程实践中，地面控制站或指控车通常下达任务级指令，而单架无人机依靠机载飞控、定位模块、边缘计算单元和邻近通信信息完成局部决策。该模式能够减少人工逐机操控的负担，却也将系统稳定性转移到通信质量、状态预测精度和数值积分可靠性之上。
+
+在无人机蜂群作战、无人机灯光秀和集群路径规划仿真等场景中，控制链路具有明显的离散采样特征。地面站或基站发出的目标点、速度指令和队形约束并非连续传输；机载计算单元也通常以固定控制周期更新状态。因此，连续动力学模型必须通过数值方法在离散时刻上求解。常微分方程数值解法正是连接连续运动规律与离散控制实现的核心工具。
+
+从系统组成来看，无人机集群一般包含三类核心对象。第一类是任务级控制端，如地面站、指控车或表演控制平台，其作用是给出任务级指令、航线或灯光变换数据。第二类是定位与通信基础设施，如 RTK 基站、Mesh 网络节点和地面观测设备，它们提供坐标修正、状态转发和观测数据。第三类是无人机智能节点，每架无人机都包含飞控、定位或授时单元、通信模块和边缘计算单元。三类对象共同形成“任务下发-状态感知-局部解算-飞控执行”的闭环链路，而 ODE 数值积分位于局部解算与飞控执行之间，负责把离散目标和动力学方程转换成可执行的连续轨迹。
+
+该问题之所以适合放在工程数值分析课程中讨论，是因为无人机控制并不是单纯的控制理论问题，也不是单纯的程序实现问题。真实系统中，控制器每隔若干毫秒读取一次状态并输出一次控制量，仿真器每一步也只能推进一个有限时间步长。只要步长不是无穷小，状态更新就必然包含截断误差；只要通信不是连续可靠的，邻机信息就必然需要预测和补偿。因此，数值解法的阶数、稳定域、误差传播方式与计算复杂度会直接影响集群行为。
+
+\begin{figure}[!htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{online_nasa_utm_drones_paper.jpg}
+    \caption{NASA 城市无人机运行测试}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{online_rose_bowl_drone_show_paper.jpg}
+    \caption{Rose Bowl 无人机灯光秀}
+  \end{subfigure}
+  \caption{无人机集群的典型应用场景。}
+  \label{fig:application}
+\end{figure}
+
+\subsection{技术挑战}
+无人机集群的控制难点集中在三个方面。第一，通信带宽与可靠性有限。集群规模增大后，位置信号、速度信号、任务状态与避障信息的传输量快速上升，容易出现延迟、丢包和局部拓扑断连。第二，机载计算资源有限。部分小型无人机的 CPU/GPU 算力难以支撑复杂模型的实时推理，因此状态外推方法必须兼顾计算量与误差控制。第三，飞行过程具有强非线性和高动态性。绕障、急转弯、队形重构等过程会放大低阶数值方法的截断误差，进而表现为轨迹漂移、姿态震荡或队形破坏。
+
+在这样的背景下，仅依赖当前时刻的控制输入并不足够。无人机需要根据历史状态和邻机信息预测未来短时间内的位置变化，特别是在通信短时中断时维持轨迹连续。因此，比较不同 ODE 数值解法的鲁棒性，具有明确的工程意义。
+
+进一步看，通信问题会通过两条路径影响飞行稳定性。一条路径是控制输入的滞后：当目标点到达时间晚于控制周期时，飞控仍会根据旧目标推进状态，造成轨迹滞后。另一条路径是邻机状态缺失：当队形控制依赖相对距离或相对速度时，邻机位置一旦丢失，局部控制律会失去约束对象。数值方法若只使用当前一步信息，面对上述情况往往只能被动等待新数据；若能够利用历史状态进行外推，则可在短时间内维持控制连续性。
+
+在弱网场景建模中，可将该问题进一步表述为系统级补偿问题：通信节点需要在检测到心跳异常或丢包率升高时，隔离可能污染规划器的外部位置输入，并由本地预测模块临时接管邻机状态估计。该过程并不是替代规划器本身，而是在通信--控制之间提供一个短时连续的状态底座，使 EGO-Planner 等上层模块在遮挡、强干扰或短时断链时仍有可用的预测坐标。本文后文将这一机制落实为 Euler 基线、二阶 Adams-Bashforth 外推和低通滤波补偿的比较。
+
+此外，误差并非只表现为位置偏差。对于四旋翼无人机而言，位置误差会通过轨迹跟踪器传导为速度误差，再进一步转化为姿态角和角速度调整。如果数值积分导致位置估计出现突变，姿态控制器可能产生过大的修正量，表现为抖动、急转或短时失稳。因此，本文不仅讨论“算得准不准”，还讨论“误差是否平滑”“误差是否会放大到控制链路”和“方法是否适合机载实时运行”。
+
+从一致性控制角度看，通信延迟下的邻机状态更新可写为
+\begin{equation}
+  \dot{x}_i(t)=\sum_{j\in N_i} A_{ij}\left(x_j(t-\tau)-x_i(t)\right),
+  \label{eq:consensus-intro}
+\end{equation}
+其中 $A_{ij}$ 为通信拓扑矩阵，$\tau$ 为通信延迟。当距离过远或链路质量下降时，$A_{ij}$ 可由 1 变为 0，控制器便需要根据历史状态补偿缺失输入。
+
+离散控制周期与 ODE 数值积分的关系可进一步概括为
+\begin{equation}
+  \bm s_{k+1}=\bm s_k+\int_{t_k}^{t_k+\Delta t}f(\bm s(\tau),\bm u(\tau))\,\diff\tau
+  \approx \bm s_k+\Phi(\bm s_k,\bm u_k,\Delta t),
+  \label{eq:discrete-control-integral}
+\end{equation}
+其中 $\bm s$ 为无人机状态向量，$\bm u$ 为控制输入，$\Phi$ 表示具体数值积分器。Euler、RK4 与 Adams 的差异，本质上就是对 $\Phi$ 的不同近似方式。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{signal_flow_core_clean_tight.png}
+  \caption{无人机集群任务中的坐标信号流。}
+  \label{fig:signal-flow}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.64\textwidth]{communication_base_station_tight.jpg}
+  \caption{无人机集群通信基站关系。}
+  \label{fig:base-station-intro}
+\end{figure}
+
+\subsection{研究对象与思路}
+本文研究对象是无人机集群编队控制中的 ODE 数值积分问题，重点讨论数值方法如何在离散控制周期、通信延迟和机载算力限制下影响轨迹预测与队形保持。全文按四个问题展开：
+
+\begin{enumerate}
+  \item 建立无人机集群轨迹跟随和通信预测中的 ODE 建模框架，解释为什么离散控制系统需要数值积分。
+  \item 系统比较欧拉法、RK4 与二阶 Adams-Bashforth 的公式结构、截断误差、稳定性和工程适用场景。
+  \item 结合 ROS/RVIZ 仿真、rosbag 第一视角采样和算法效果图，分析三类方法在高动态绕障与弱网通信条件下的表现差异。
+  \item 从频域角度解释 Adams 外推的高频噪声放大问题，并讨论 Butterworth 低通滤波作为软件层补偿模块的作用。
+  \item 总结面向工程部署的选型建议，为后续无人机集群仿真平台的参数适配、数据集复算和算法改进提供依据。
+\end{enumerate}
+
+写作上，本文先说明无人机集群为什么会遇到离散控制、通信延迟、丢包和机载算力限制，再把这些问题落到状态更新、轨迹预测和邻机状态外推三个数值积分任务中。随后比较 Euler、RK4 与二阶 Adams-Bashforth 的公式结构和误差表现，并用仿真图表讨论三类方法在正常通信、复杂轨迹和弱网预测中的适配边界。
+
+\section{研究背景与关键问题}
+
+\subsection{无人机集群控制方法演进}
+早期无人机控制多围绕单机飞行稳定、姿态控制和点到点路径跟踪展开。随着多无人机系统的发展，研究重点逐渐转向分布式协同控制、队形保持、一致性协议、协同感知与多智能体任务规划。在实际系统中，地面站通常只下发任务级指令，单机根据局部传感器和邻机通信信息进行自主调整。这种分布式架构降低了中心节点的压力，但也要求每个节点具备一定的状态预测能力。
+
+从数值计算角度看，无人机位置、速度、姿态与角速度之间存在连续导数关系。无论是动力学仿真、飞控闭环，还是在通信丢包时对邻机状态进行短时预测，本质上都需要在离散采样点之间求解微分方程。欧拉法、龙格-库塔法和线性多步法因此成为机器人仿真和飞控系统中常见的基础算法。
+
+无人机集群控制方法大致经历了三个阶段。第一阶段以集中式控制为主，地面端计算全部无人机轨迹并统一下发，优点是全局规划清晰，缺点是通信压力大且中心节点故障会影响整体任务。第二阶段转向分布式协同，每架无人机只与邻近节点交换状态，通过一致性协议、人工势场或局部优化实现队形保持。第三阶段则强调智能化与工程可部署性，在传统控制的基础上加入路径规划器、在线重规划、任务分配算法和多传感器融合模块。
+
+在这些阶段中，数值积分的作用并没有消失，反而更加基础。集中式控制需要将规划轨迹离散化后发送；分布式控制需要在邻机状态更新间隔内预测相对运动；智能化控制虽然可能使用学习模型，但底层物理仿真和飞控执行仍要依赖离散时间步。换言之，数值解法并不是无人机算法链路中的附属工具，而是几乎所有模块共享的底层计算基础。
+
+从已有研究看，无人机集群控制通常同时涉及多智能体一致性、四旋翼轨迹规划、网络化控制和机器人仿真平台四类问题。多智能体一致性研究将个体状态收敛、邻接拓扑和通信延迟统一到图论与微分方程框架中，为式 \eqref{eq:consensus} 中的拓扑矩阵和延迟项提供理论背景。四旋翼轨迹规划研究则强调轨迹的连续性、可执行性和平滑性，例如最小 snap 轨迹和基于局部优化的快速飞行规划，其核心都要求位置、速度、加速度乃至更高阶导数在离散控制周期内保持合理连续。网络化控制研究进一步指出，延迟、丢包和带宽限制会改变闭环系统稳定性，因而无人机集群不能只讨论理想通信条件下的轨迹精度。ROS/RVIZ 等仿真平台则为上述算法提供模块化验证环境，但其可视化结果仍应与误差指标、日志记录和重复实验结合使用，避免把视觉现象直接等同于真实性能结论。
+
+结合本文任务，ODE 数值方法并不是孤立的数学公式，而是连接上述四类问题的底层计算工具。欧拉法体现低算力、低阶近似的工程基线；RK4 体现单步高阶积分对复杂曲线轨迹的精度提升；Adams 多步法体现历史状态在弱网条件下的预测价值。因此，本文将数值方法比较放入“无人机集群通信与轨迹控制”场景中，而不是仅从阶数高低进行抽象排序。
+
+相关研究为本文提供了三个基础：ODE 教材给出单步法与多步法的误差阶和稳定性分析，多智能体一致性研究说明通信拓扑和延迟如何进入状态方程，四旋翼轨迹规划与 ROS 仿真平台则给出无人机运动约束和可视化验证环境。本文只在课程仿真和参数化模型范围内比较方法，不把可视化现象等同于实机飞行结论。
+
+\subsection{常微分方程数值解法的发展}
+给定初值问题
+\begin{equation}
+  y'(t)=f(t,y), \qquad y(t_0)=y_0,
+  \label{eq:ivp}
+\end{equation}
+ODE 数值解法的核心任务是根据已知离散状态估计下一时刻状态。若计算 $y_{i+1}$ 时只使用当前一步的信息，称为单步法；若同时利用多个历史状态，则称为多步法。欧拉法是一阶单步法，计算简单但精度较低；RK4 属于高阶单步法，通过一个步长内的多次斜率采样提升精度；Adams 法属于线性多步法，能够利用历史信息进行外推或校正。
+
+从理论发展看，单步法与多步法代表了两种不同的信息利用方式。单步法强调在一个步长内部提高近似精度，例如 RK4 通过多次采样获得更可靠的平均斜率；多步法则强调跨步长利用历史信息，例如 Adams-Bashforth 方法利用过去多个斜率外推下一步，Adams-Moulton 方法进一步引入隐式校正。在无人机应用中，这种差异会转化为不同的工程特征：单步高阶法适合当前状态可靠、动力学变化剧烈的场景；多步法适合历史状态连续、当前通信存在缺口的场景。
+
+数值方法还需要考虑稳定性。即使某个方法在理论上具有较高阶数，如果步长选择过大，仍可能导致数值解震荡或发散。无人机仿真中的步长 $h$ 往往由控制频率、传感器采样率和计算延迟共同决定，不能任意缩小。因此，在工程环境中选择积分器时，不能只比较公式阶数，还要同时评估计算时间、步长容忍度和对噪声的敏感性。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.84\textwidth]{ode_method_core_tight.png}
+  \caption{单步法与多步法的信息利用方式。}
+  \label{fig:single-multistep}
+\end{figure}
+
+\subsection{现存问题}
+在无人机集群编队控制中，数值积分方法面临以下关键问题。
+
+第一，精度与实时性的矛盾突出。低阶方法计算量小，适合机载部署，但在高动态绕障和急转弯场景中容易产生明显轨迹漂移；高阶方法精度较好，却会增加每个控制周期内的函数评估次数。
+
+第二，通信丢包会破坏状态连续性。当邻机状态无法按期到达时，控制器需要依靠历史轨迹外推。若数值方法不能利用历史信息，预测结果可能与真实运动发生偏离，继而引发队形振荡。
+
+第三，仿真平台与真实系统之间存在差距。ROS/RVIZ 环境能够提供可视化验证，但本文尚未记录真实飞行日志或实机重复实验数据。因此，本文不把可视化效果写成真实飞行结论，数值方法的评价也只在现有仿真现象和后续实验设计范围内展开。
+
+第四，轨迹规划与动力学执行之间存在模型不一致。规划器输出的往往是几何路径或离散航点，而飞控系统执行的是受动力学约束的运动。若数值积分器不能准确反映速度、加速度和姿态之间的连续关系，规划路径即使在几何上可行，也可能在动力学执行时出现超调或偏离。
+
+第五，历史数据的使用方式尚不充分。许多简单控制实现只保留当前状态和目标状态，没有系统利用过去若干帧位置、速度和通信拓扑变化。这使得控制器在丢包时缺乏短时预测依据。Adams 多步法所体现的历史状态外推思想，恰好为这一问题提供了可解释的数值分析框架。
+
+\section{ODE 数值方法与无人机集群建模}
+
+\subsection{数值方法系统分析}
+
+\noindent{\heiti 一阶欧拉法}\par
+显式欧拉法用当前点斜率近似整个步长内的变化：
+\begin{equation}
+  y_{i+1}=y_i+h f(t_i,y_i).
+  \label{eq:euler}
+\end{equation}
+其优点是公式简单、计算量低，每步只需一次函数评估。对于机载算力有限且状态变化较平缓的场景，欧拉法具有实现优势。然而，它的局部截断误差为 $O(h^2)$，全局误差为 $O(h)$。当无人机绕障或高速转弯时，单个步长内的加速度与姿态变化不能被当前斜率充分表示，误差会随时间累积。
+
+若将无人机状态写为 $\bm s=[\bm p,\bm v,\bm q,\bm \omega]^\mathrm{T}$，其中 $\bm p$ 为位置、$\bm v$ 为速度、$\bm q$ 为姿态、$\bm \omega$ 为角速度，则欧拉法相当于假设一个控制周期内 $\dot{\bm s}$ 保持不变。该假设在低速巡航时近似可接受，但在绕障、急停、快速转向时会明显偏粗糙。例如无人机接近障碍物时，规划器可能在很短时间内改变期望速度方向，欧拉法仍沿用当前斜率推进，便容易出现“冲过头”或偏离安全走廊的现象。
+
+欧拉法也有隐式形式和中点改进形式。隐式欧拉法使用 $f(t_{i+1},y_{i+1})$，稳定性通常优于显式欧拉法，但需要求解隐式方程，实时实现成本增加；中点欧拉法通过中间状态修正斜率，精度较显式欧拉法更好，但仍不能完全解决高动态路径中的误差积累。本文仿真比较以显式欧拉法作为低阶基线，用于呈现降阶积分器在复杂轨迹下的典型问题。
+\begin{equation}
+  y_{i+1}=y_i+h f(t_{i+1},y_{i+1}),
+  \label{eq:implicit-euler}
+\end{equation}
+\begin{equation}
+  y_{i+1}=y_{i-1}+2h f(t_i,y_i).
+  \label{eq:euler-midpoint}
+\end{equation}
+式 \eqref{eq:implicit-euler} 表示后置欧拉式，式 \eqref{eq:euler-midpoint} 表示欧拉中点公式。前者提高稳定性但需要隐式求解，后者利用相邻两步信息改善斜率估计。
+
+\noindent{\heiti 四阶龙格-库塔法}\par
+二阶龙格-库塔法可写为
+\begin{equation}
+\begin{cases}
+  y_{i+1}=y_i+\dfrac{h}{2}(K_1+K_2),\\
+  K_1=f(x_i,y_i),\\
+  K_2=f(x_i+h,y_i+hK_1).
+\end{cases}
+\label{eq:rk2}
+\end{equation}
+它已经体现出“在步长内部试探未来斜率”的思想。RK4 则进一步在起点、中点和终点构造四个斜率。
+
+RK4 在一个步长内计算四个斜率：
+\begin{equation}
+\begin{aligned}
+  k_1 &= f(t_i,y_i),\\
+  k_2 &= f(t_i+\frac{h}{2},y_i+\frac{h}{2}k_1),\\
+  k_3 &= f(t_i+\frac{h}{2},y_i+\frac{h}{2}k_2),\\
+  k_4 &= f(t_i+h,y_i+h k_3),\\
+  y_{i+1} &= y_i+\frac{h}{6}(k_1+2k_2+2k_3+k_4).
+\end{aligned}
+\label{eq:rk4}
+\end{equation}
+它相当于在步长起点、中点和终点多次试探系统变化趋势，并对斜率进行加权平均。RK4 的局部截断误差可达 $O(h^5)$，全局误差为 $O(h^4)$，因此在理想通信条件和中等算力条件下有助于改善轨迹平滑性。
+
+在无人机动力学中，RK4 的优势可以理解为对“未来半步状态”的主动试探。对于同样的步长 $h$，欧拉法只看到当前速度或加速度，而 RK4 会估计半步后的变化趋势，再用多个估计结果合成下一步状态。这种机制使其更容易捕捉曲线轨迹中的局部弯曲特征，尤其适合 EGO-Planner 等路径规划器输出的平滑空间曲线。
+
+当然，RK4 并非无条件最优。每一步四次函数评估意味着更高的计算开销。如果无人机数量很大，且每架无人机都需要实时进行复杂动力学积分，RK4 可能占用较多机载计算资源。此外，RK4 仍属于单步法，对通信丢包的处理并不天然优于欧拉法；它能提高当前动力学积分精度，但不能自动补齐缺失的邻机状态。因此，RK4 更适合“当前状态可靠、轨迹变化复杂”的问题。
+
+经典 RK4 的全局误差为 $O(h^4)$，局部截断误差为 $O(h^5)$。在光滑标量问题中，截断误差主项可概括为
+\begin{equation}
+  T^{(5)}=\frac{h^5}{2880}y^{(5)}(\xi),\qquad \xi\in[t_i,t_{i+1}],
+  \label{eq:rk4-local-error}
+\end{equation}
+这说明减小步长能够快速压低局部截断误差。不过无人机动力学包含姿态正交化、地面约束和电机动态，实际基准测试中的观测斜率未必严格等于教材中的理想阶数。
+
+\noindent{\heiti Adams-Bashforth 多步外推}\par
+Adams-Bashforth 法利用多个历史点上的斜率近似未来状态，一般形式可写为
+\begin{equation}
+  y_{i+1}=y_i+h\sum_{j=0}^{k}\beta_j f_{i+1-k+j}.
+  \label{eq:adams}
+\end{equation}
+在无人机集群中，多步法的优势并不只体现在阶数上，更在于它天然使用历史状态。当通信链路发生短时丢包时，控制器可以缓存过去若干时刻的位置、速度和邻机状态，用多项式外推形成连续轨迹预测，从而缓解离散通信数据缺失带来的控制不连续。
+
+Adams 法在工程上常被理解为“带记忆的积分器”。如果过去若干个时刻的状态变化趋势较稳定，那么未来短时间内的状态可由历史斜率外推得到。对于无人机集群通信而言，这一点非常重要：即便某一时刻邻机数据没有到达，只要过去几帧数据仍然可用，系统就可以给出一个短时预测位置，避免控制量突然归零或跳变。本文的通信预测节点采用二阶 Adams-Bashforth 作为主线，其核心思想是用当前速度和上一时刻速度隐式估计曲率变化。
+
+需要注意的是，多步法的效果依赖历史数据质量。如果历史状态本身含有较大噪声，或者无人机突然执行高机动动作，外推结果可能偏离真实轨迹。因此在实际部署中，Adams 法通常需要与滤波、异常检测和步长控制配合使用。当通信恢复后，还需要用真实观测对预测状态进行校正，避免预测误差长期积累。
+
+本文在弱网通信预测中采用二阶 Adams-Bashforth 显式格式：
+\begin{equation}
+  y_{n+1}=y_n+\frac{h}{2}\left(3f_n-f_{n-1}\right).
+  \label{eq:adams-ab2}
+\end{equation}
+若将状态变量具体写为无人机位置，则可以理解为
+\begin{equation}
+  \hat{\bm p}_{n+1}
+  =\bm p_n+\frac{h}{2}\left(3\bm v_n-\bm v_{n-1}\right),
+  \label{eq:adams-ab2-position}
+\end{equation}
+其中 $\bm v_n$ 和 $\bm v_{n-1}$ 来自通信中断前的有效里程计或视觉里程计状态。该格式只需要一阶历史速度队列即可启动，适合作为通信预测节点中的轻量补偿模块。二阶 Adams-Bashforth 的局部截断误差为 $O(h^3)$，全局误差为 $O(h^2)$；相较 Euler 的线性外推，它能更好描述短时间内的曲率变化，但也会对速度差分噪声更敏感。
+
+线性多步法的截断误差一般可表示为
+\begin{equation}
+  R=C_{k+1}h^{k+1}y^{(k+1)}(\xi),
+  \label{eq:lmm-error-general}
+\end{equation}
+其中常数 $C_{k+1}$ 由具体方法决定。对于二阶 Adams-Bashforth，局部误差可写成
+\begin{equation}
+  R=\frac{5}{12}h^3y^{(3)}(\xi).
+  \label{eq:adams-ab2-error}
+\end{equation}
+
+\begin{table}[H]
+  \centering
+  \caption{三类 ODE 数值解法的工程特性对比}
+  \label{tab:method-compare}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.4cm} >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{2.1cm} X X}
+    \toprule
+    方法 & 方法类型 & 每步函数评估 & 主要优势 & 主要局限 \\
+    \midrule
+    欧拉法 & 单步低阶 & 1 次 & 实现简单，计算开销低，适合快速原型与低算力节点 & 截断误差大，高动态场景易漂移或震荡 \\
+    RK4 & 单步高阶 & 4 次 & 轨迹平滑，精度高，适合非线性运动积分 & 计算量增加，对实时周期提出更高要求 \\
+    Adams-Bashforth 2 & 线性多步 & 1 次新斜率 & 能利用历史速度趋势，适合弱网下的短时预测与补偿 & 对速度噪声和急转差分敏感，需要滤波与校正 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{线性多步法公式补充}
+  \label{tab:lmm-formulas}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.4cm} X >{\centering\arraybackslash}p{3.0cm}}
+    \toprule
+    方法 & 典型格式 & 局部截断误差 \\
+    \midrule
+    Adams-Bashforth 2步 & $y_{n+1}=y_n+\frac{h}{2}(3f_n-f_{n-1})$ & $\frac{5}{12}h^3y^{(3)}(\xi)$ \\
+    Milne 法 & $y_{i+4}=y_i+\frac{4h}{3}(2f_{i+1}-f_{i+2}+2f_{i+3})$ & $\frac{14}{45}h^5y^{(5)}(x_i)$ \\
+    Hamming 法 & $y_{i+1}=\frac{1}{8}(9y_i-y_{i-2})+\frac{3}{8}h(f_{i+1}+2f_i-f_{i-1})$ & $-\frac{1}{40}h^5y^{(5)}(\xi)$ \\
+    Simpson 法 & $y_{i+1}=y_{i-1}+\frac{h}{3}(f_{i+1}+4f_i+f_{i-1})$ & $-\frac{1}{90}h^5y^{(5)}(\eta)$ \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{仿真设置与评价指标}
+
+\subsection{基准测试思路}
+前期资料提供了本文的仿真素材来源：无人机集群任务被拆成场景建模、URDF 模型、ROS 节点连接、ODE 坐标信号发送、状态解算和 RVIZ 可视化几个环节。本文在此基础上保留 Euler 与 RK4 的动力学积分基线，并以二阶 Adams-Bashforth 通信预测为弱网补偿主线。动力学基线用于解释单步低阶与单步高阶方法的截断误差差异；通信预测采样则用于解释历史速度队列如何在 rosbag 中补齐短时状态缺口。
+
+这种设置并不等同于实机飞行测试。它的作用是把仿真现象中的“欧拉急转、RK4 平滑、Adams 历史外推”和仿真采样中的“第一视角采样、10 s 弱网中断、频域高频增益”转化为可讨论的指标和边界。换言之，RVIZ 图用于说明现象，已有 CSV 基准用于支撑 Euler/RK4 积分差异，采样参数重绘图用于说明 rosbag 采样结果和频域诊断，不替代原始 rosbag 复算。
+
+\subsection{评价指标与鲁棒性判据}
+为使三类方法的比较具有可解释性，本文从数值误差、轨迹连续性和工程代价三个层面建立评价指标。数值误差主要衡量积分结果与参考轨迹之间的差异，可使用均方误差和平均绝对误差：
+\begin{equation}
+  \mathrm{MSE}=\frac{1}{N}\sum_{i=1}^{N}\|\bm p_i-\hat{\bm p}_i\|^2,\qquad
+  \mathrm{MAE}=\frac{1}{N}\sum_{i=1}^{N}\|\bm p_i-\hat{\bm p}_i\|.
+  \label{eq:mse-mae}
+\end{equation}
+其中 $\bm p_i$ 为参考位置，$\hat{\bm p}_i$ 为数值解法得到的位置。MSE 对大误差更敏感，适合观察轨迹发散；MAE 更直观，适合衡量平均偏差。
+
+轨迹连续性可通过相邻时刻速度和加速度变化来衡量。若数值积分导致位置序列出现尖峰，则速度差分和加速度差分会显著增大。对于无人机编队而言，过大的速度突变会引发姿态修正，过大的加速度突变会增加执行器负担。因此可定义平滑性指标：
+\begin{equation}
+  J_{\mathrm{smooth}}=\sum_{i=2}^{N-1}\|\hat{\bm p}_{i+1}-2\hat{\bm p}_{i}+\hat{\bm p}_{i-1}\|^2.
+  \label{eq:smooth}
+\end{equation}
+该指标越小，说明轨迹二阶差分越平稳。
+
+工程代价主要包括每步函数评估次数、历史缓存长度、是否需要求解隐式方程以及对通信质量的依赖。本文不把某一单项指标作为唯一标准，而是将其放入任务环境中解释：高动态绕障更关注 MSE 和平滑性，弱网协同更关注历史状态利用能力，低成本机载部署则更关注每步计算量。
+
+在稳定性分析上，步长需要与动力学雅可比矩阵的谱半径相匹配，可概括为
+\begin{equation}
+  h\leq\frac{h_{\max}}{\rho(\partial f/\partial y)},
+  \label{eq:stability-step}
+\end{equation}
+其中 $\rho(\cdot)$ 表示谱半径。无人机高速转弯、避障和姿态快速修正时，系统局部非线性增强，等价于 $\rho$ 增大，因此同一积分器需要更小步长才能维持数值稳定。
+
+\begin{table}[H]
+  \centering
+  \caption{本文采用的评价维度与含义}
+  \label{tab:metrics}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3.2cm} X}
+    \toprule
+    评价维度 & 代表指标 & 工程含义 \\
+    \midrule
+    位置误差 & MSE、MAE & 判断积分轨迹与参考轨迹的偏离程度，反映数值精度 \\
+    轨迹平滑性 & 二阶差分能量 & 判断是否存在急转、抖动或被强制拉回的现象 \\
+    弱网鲁棒性 & 丢包后连续预测能力 & 判断通信中断时能否维持短时可用轨迹 \\
+    实时计算量 & 函数评估次数、缓存需求 & 判断方法是否适合机载实时部署 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{无人机仿真参数}
+  \label{tab:uav-parameters}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3.3cm} >{\centering\arraybackslash}p{3.2cm} X}
+    \toprule
+    参数 & 数值或配置 & 在本文中的作用 \\
+    \midrule
+    最大速度 & 2 m/s & 约束路径跟踪速度上限，影响 Euler 线性外推误差增长 \\
+    最大加速度 & 3.0 m/s$^2$ & 决定急转和爬坡时的动力学响应边界 \\
+    最大加加速度 & 4.0 m/s$^3$ & 对应 B-Spline 平滑代价中的高阶导数约束 \\
+    机体质量 & 0.98 kg & 用于牛顿-欧拉平动方程和推力估计 \\
+    机臂长度 & 0.17 m & 用于 URDF 几何与电机力矩映射 \\
+    视觉里程计频率 & 30.0 Hz & 决定 rosbag 位置与速度采样节拍 \\
+    深度相机刷新频率 & 30.0 Hz & 与 EGO-Swarm 感知和规划节拍保持一致 \\
+    集群最小间距 & 0.5 m & 作为课程仿真中的通信预测风险阈值之一 \\
+    障碍物膨胀半径 & 0.099 m & 影响局部规划器避障代价与轨迹曲率 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{状态模型与通信模型}
+无人机的平移运动可抽象为牛顿-欧拉动力学：
+\begin{equation}
+  m\ddot{\bm p}= f R\bm e_3-mg\bm e_3,
+  \label{eq:dynamics}
+\end{equation}
+其中 $\bm p$ 表示位置向量，$m$ 为质量，$f$ 为总推力，$R$ 为姿态旋转矩阵，$\bm e_3$ 为竖直方向单位向量。该方程说明位置、速度和加速度之间具有连续导数关系；在数值仿真中，需要通过积分从加速度更新速度，再从速度更新位置。
+
+对于多机协同，常见的一致性协议可写为
+\begin{equation}
+  \dot{x}_i(t)=\sum_{j\in N_i} A_{ij}\left(x_j(t-\tau)-x_i(t)\right),
+  \label{eq:consensus}
+\end{equation}
+其中 $x_i(t)$ 表示第 $i$ 架无人机的状态，$N_i$ 为邻居集合，$A_{ij}$ 为通信拓扑矩阵，$\tau$ 表示通信延迟。当 $A_{ij}=0$ 时，可理解为对应通信链路断开。式 \eqref{eq:consensus} 将通信拓扑、延迟和状态收敛统一到一个 ODE 框架中，为数值方法比较提供了理论基础。
+
+在编队控制中，$x_i(t)$ 可以表示位置，也可以扩展为包含速度和姿态的状态向量。若 $A_{ij}$ 长时间保持稳定，集群会趋向一致或保持预定队形；若 $A_{ij}$ 随通信质量变化而频繁切换，则状态收敛过程会受到扰动。数值积分器在这里承担两项任务：一是根据拓扑矩阵和邻机状态推进本机状态，二是在拓扑短时缺失时提供预测状态，保证控制律不因单次丢包而失效。
+
+对于路径规划任务，可将目标轨迹看作一系列离散航点 $\bm r_0,\bm r_1,\ldots,\bm r_N$。无人机实际执行时并不是瞬间跳到下一个航点，而是在动力学约束下连续运动。因此，轨迹跟踪器需要根据当前位置、速度和目标航点生成期望加速度，再由积分器推进状态。若积分器误差过大，轨迹跟踪器会不断纠偏，最终表现为路径抖动或绕障失败。
+
+按照课程项目的建模口径，四旋翼无人机首先可抽象为 12 维状态空间与 4 维控制输入。12 维状态包括三维位置 $\bm p$、三维线速度 $\bm v$、滚转/俯仰/偏航角 $\bm\eta=[\phi,\theta,\psi]^{\mathrm T}$ 以及机体角速度 $\bm\omega$；4 维输入包括总推力 $T$ 与绕三个机体轴的控制力矩 $\bm\tau=[\tau_x,\tau_y,\tau_z]^{\mathrm T}$。在更细的物理引擎实现中，状态还可扩展到姿态矩阵和电机转速。
+
+结合 ego\_ws 中的四旋翼动力学实现，状态可组织为 22 维向量：
+\begin{equation}
+  \bm s=
+  [x,y,z,\ v_x,v_y,v_z,\ R_{11},\ldots,R_{33},\ \omega_x,\omega_y,\omega_z,\ \omega_{m1},\ldots,\omega_{m4}]^{\mathrm T}
+  \in\mathbb{R}^{22}.
+  \label{eq:state-22}
+\end{equation}
+其中 $R$ 为姿态旋转矩阵，$\bm\omega$ 为角速度，$\omega_{m1},\ldots,\omega_{m4}$ 为四个电机转速。姿态运动学和角速度动力学可写为
+\begin{equation}
+  \dot R=R[\bm\omega]_\times,
+  \label{eq:so3-kinematics}
+\end{equation}
+\begin{equation}
+  J\dot{\bm\omega}=-\bm\omega\times J\bm\omega+\bm\tau.
+  \label{eq:angular-dynamics}
+\end{equation}
+平动状态则由加速度推进为速度和位置：
+\begin{equation}
+  \bm v_{i+1}=\bm v_i+\int_{t_i}^{t_{i+1}}\frac{1}{m}(fR\bm e_3-mg\bm e_3)\,\diff t,\qquad
+  \bm p_{i+1}=\bm p_i+\int_{t_i}^{t_{i+1}}\bm v(t)\,\diff t.
+  \label{eq:pv-integral}
+\end{equation}
+
+四旋翼还具有常用的微分平坦表示。若选取平坦输出
+\begin{equation}
+  \bm z=[x,y,z,\psi]^{\mathrm T},
+  \label{eq:flat-output}
+\end{equation}
+则在给定期望位置、速度、加速度和偏航角后，可以由位置二阶导数反推出总推力和姿态。由式 \eqref{eq:dynamics} 可得
+\begin{equation}
+  T=m\left\|\ddot{\bm p}+g\bm e_3\right\|,\qquad
+  \bm b_3=\frac{\ddot{\bm p}+g\bm e_3}{\left\|\ddot{\bm p}+g\bm e_3\right\|},
+  \label{eq:flat-thrust}
+\end{equation}
+其中 $\bm b_3$ 表示机体系 $z$ 轴方向。结合给定偏航角 $\psi$ 构造水平参考向量后，可通过叉乘得到 $\bm b_1,\bm b_2$ 并组成旋转矩阵 $R=[\bm b_1,\bm b_2,\bm b_3]$。这说明路径规划输出的几何位置并不能直接执行，仍需通过动力学映射转化为姿态和推力。
+
+在路径规划层，路径规划层可将后端轨迹写成均匀 B-Spline 形式：
+\begin{equation}
+  \bm p(t)=\sum_{i=0}^{n}\bm q_i B_i(t),
+  \label{eq:bspline}
+\end{equation}
+其中 $\bm q_i$ 为控制点，$B_i(t)$ 为 B-Spline 基函数。其优化目标可概括为
+\begin{equation}
+  J=\lambda_s J_{\mathrm{smooth}}+\lambda_o J_{\mathrm{obs}}+\lambda_d J_{\mathrm{dyn}},
+  \label{eq:planner-cost}
+\end{equation}
+其中平滑度代价约束 jerk 或 snap，避障代价根据障碍物距离场惩罚碰撞风险，动力学代价约束速度、加速度和执行器能力。当通信延迟导致邻机位置缺失时，避障代价中的相对位置会失真，进而可能给规划器注入错误排斥梯度，这正是通信预测模块需要补偿的位置。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{ode_signal_pipeline_tight.jpg}
+  \caption{无人机路径规划中的 ODE 信号发送框架。}
+  \label{fig:ode-pipeline}
+\end{figure}
+
+在弱网预测中，历史状态可用于外推邻机位置：
+\begin{equation}
+  \hat{x}_j(t_{k+1})=x_j(t_k)+\frac{h}{2}\left(3\dot{x}_j(t_k)-\dot{x}_j(t_{k-1})\right),
+  \label{eq:multistep-communication-predict}
+\end{equation}
+其中 $\hat{x}_j$ 是对第 $j$ 架无人机下一时刻状态的预测。若通信包缺失，系统暂时使用 $\hat{x}_j$ 进入控制律；通信恢复后再用真实观测校正。
+
+\subsection{ROS/RVIZ 仿真流程}
+本文的仿真流程以 ROS 节点为任务组织形式，以 RVIZ 作为三维可视化平台，并通过 URDF 模型描述无人机几何结构、惯性参数和动力学效应。整体流程包括建立模拟场景、构建无人机 URDF 模型、搭建 ROS 节点连接、用不同 ODE 解法发送相对坐标信号、解算目标运行轨迹，并通过 RVIZ 展示无人机运行状态。
+
+ROS 节点在仿真中承担模块解耦作用。路径规划节点负责生成参考轨迹，控制节点根据参考轨迹和当前状态计算控制输入，通信节点模拟无人机之间的状态交换，动力学节点根据 ODE 数值方法更新无人机状态，RVIZ 节点则将轨迹、障碍物和无人机模型可视化。这样的分层结构便于单独替换积分器，从而观察不同 ODE 解法对整体轨迹表现的影响。
+
+URDF 模型提供了无人机几何外形和动力学参数的基础描述。仿真参数中设置的“模拟拉力”可理解为仿真环境中的纠偏机制：当轨迹偏离目标区域后，系统会把无人机拉回规划路径附近。因此，Euler 图中的急转既反映低阶积分误差，也受到该纠偏机制影响。本文在结果分析中保留这一边界，不把单张 RVIZ 截图写成真实飞行结论。
+
+为了避免把 ODE 数值解法只理解为独立算法，本文将无人机集群任务拆解为“规划-通信-控制-执行”四个环节。规划环节生成离散航点、参考速度或局部轨迹；通信环节在无人机、地面站、RTK 基站和邻机之间传递状态信息；控制环节根据当前状态、参考轨迹和邻机状态计算期望速度、加速度或姿态；执行环节由动力学模型和飞控闭环推进无人机状态。Euler、RK4 与 Adams 的作用位置并不完全相同：Euler 可作为低算力状态推进基线，RK4 更适合嵌入控制-执行之间的高精度动力学积分，Adams 则更适合嵌入通信-控制之间的短时状态外推。
+
+在 ROS 仿真中，建议将上述环节对应到可替换节点：路径规划节点发布参考轨迹，通信节点模拟邻机状态交换与丢包，积分器节点封装 Euler/RK4/Adams 状态更新，控制节点输出期望控制量，RVIZ 仅负责可视化轨迹、模型和障碍物。这样的节点组织有两个好处：一是便于在相同场景下替换积分器，二是便于通过 rosbag 或日志文件记录输入、输出和运行时间。需要强调的是，RVIZ 中轨迹更平滑只能作为定性现象，不能替代误差指标和重复实验。
+
+\begin{table}[H]
+  \centering
+  \caption{ODE 数值方法在无人机集群工程链路中的位置}
+  \label{tab:ode-engineering-chain}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.4cm} X X}
+    \toprule
+    环节 & 主要任务 & 推荐数值方法及理由 \\
+    \midrule
+    规划 & 生成离散航点、参考速度或局部轨迹 & RK4 可用于更精细的轨迹积分检验；Euler 可作快速基线 \\
+    通信 & 交换邻机状态、处理延迟与丢包 & Adams 利用历史状态外推，适合短时弱网补偿 \\
+    控制 & 根据参考轨迹和邻机状态计算控制输入 & RK4 适合当前状态可靠时的高精度状态预测 \\
+    执行 & 在动力学模型中更新位置、速度和姿态 & Euler 适合低算力备份，RK4 适合仿真和精细控制 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{simulation_workflow_core_tight.png}
+  \caption{ROS/RVIZ 仿真实现流程。}
+  \label{fig:workflow-slide}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{ros_node_architecture_tight.jpg}
+    \caption{ROS 控制节点关系}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{urdf_dynamics_effect_tight.jpg}
+    \caption{URDF 动力学效应}
+  \end{subfigure}
+  \caption{ROS 节点组织与 URDF 模型。}
+  \label{fig:ros-urdf}
+\end{figure}
+
+\subsection{实验场景与参数设置}
+为了使比较具有针对性，本文将仿真场景抽象为三类。第一类是正常通信下的轨迹跟随，用于观察积分器本身的几何精度；第二类是复杂障碍物绕行，用于放大非线性运动带来的截断误差；第三类是弱网通信下的状态预测，用于观察历史状态外推能力。三类场景分别对应欧拉法、RK4 和 Adams 法的典型优势与短板。
+
+实验变量包括积分步长 $h$、通信延迟 $\tau$、丢包率 $p_{\mathrm{loss}}$ 和无人机数量 $M$。步长越大，单位时间计算次数越少，但截断误差越大；通信延迟越大，邻机状态越滞后；丢包率越高，控制器越依赖预测；无人机数量越多，通信压力和计算压力越明显。在课程项目范围内，本文主要依据现有可视化结果进行定性比较，同时给出可扩展的定量评价框架。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.84\textwidth]{weak_network_prediction.png}
+  \caption{弱网丢包下的历史状态外推示意。}
+  \label{fig:weak-network-prediction}
+\end{figure}
+
+弱网条件下的二维预测误差可定义为
+\begin{equation}
+  \mathrm{Error}=\sqrt{(X_{\mathrm{pred}}-X_{\mathrm{real}})^2+(Y_{\mathrm{pred}}-Y_{\mathrm{real}})^2}.
+  \label{eq:communication-error}
+\end{equation}
+本文后续参数化通信模型采用 0.2 m 与 0.5 m 两条参考线，用于区分“视觉上接近”“容错范围内”和“预测明显偏离”的现象层级；该阈值服务于课程仿真讨论，不等同于实机安全认证标准。
+
+\begin{table}[H]
+  \centering
+  \caption{仿真比较中的主要变量}
+  \label{tab:experiment-settings}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} X}
+    \toprule
+    变量 & 符号 & 对结果的影响 \\
+    \midrule
+    积分步长 & $h$ & 决定截断误差和计算频率，是数值稳定性的关键参数 \\
+    通信延迟 & $\tau$ & 造成邻机状态滞后，影响一致性协议的收敛速度 \\
+    丢包率 & $p_{\mathrm{loss}}$ & 决定控制器对历史外推和预测补偿的依赖程度 \\
+    集群规模 & $M$ & 影响通信负载、计算负载和队形维护难度 \\
+    障碍物密度 & $\rho$ & 决定路径曲率变化频率，放大高动态运动误差 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{评价维度与记录字段对应关系}
+  \label{tab:metric-fields}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3.0cm} X X}
+    \toprule
+    评价维度 & 建议记录字段 & 可计算指标 \\
+    \midrule
+    动力学积分误差 & $t$、method、$\bm p$、$\bm p_{\mathrm{ref}}$、step\_us、nan\_count & MSE、MAE、最大误差、单步耗时 \\
+    通信预测误差 & $t$、leader\_pos、follower\_pos、distance、packet\_forwarded & 预测误差、链路通断、恢复时间 \\
+    集群规划负载 & replan attempt、success、elapsed\_ms、traj\_id & 重规划次数、成功率、规划耗时 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+为了将现有可视化结果扩展为可重复实验，后续仿真可设置四类场景。场景 S1 为正常通信下的轨迹跟随，用于比较积分器本身的截断误差；场景 S2 为障碍物密集区域绕行，用于放大路径曲率变化对数值稳定性的影响；场景 S3 为弱网丢包场景，用于比较 Adams 多步外推与单步法在状态缺失时的连续预测能力；场景 S4 为队形重构场景，用于观察多机一致性协议在拓扑变化下的收敛过程。本文当前不填写定量结果，只给出可执行的变量、指标和日志字段，为后续实验留出接口。
+
+\begin{table}[H]
+  \centering
+  \caption{后续可执行仿真实验设计}
+  \label{tab:experiment-design-template}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{1.5cm} p{3.2cm} X X}
+    \toprule
+    场景 & 控制变量 & 记录指标 & 目的 \\
+    \midrule
+    S1 & 积分步长 $h$、参考轨迹类型 & MSE、MAE、单步耗时、函数评估次数 & 比较理想通信下的积分精度与计算代价 \\
+    S2 & 障碍物密度 $\rho$、路径曲率 & 最大偏差、平滑性指标、越界次数 & 检验高动态绕障中的截断误差累积 \\
+    S3 & 丢包率 $p_{\mathrm{loss}}$、延迟 $\tau$ & 预测误差、恢复时间、轨迹中断次数 & 检验弱网条件下的短时状态外推能力 \\
+    S4 & 集群规模 $M$、拓扑矩阵 $A_{ij}$ & 队形误差、一致性收敛时间、通信负载 & 检验多机协同中的方法适配性 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+日志文件至少应记录 $t$、无人机编号、积分方法、参考位置 $\bm p_{\mathrm{ref}}$、估计位置 $\hat{\bm p}$、估计速度 $\hat{\bm v}$、控制输入 $\bm u$、通信包是否到达、邻机编号、延迟、丢包率和单步计算时间。只有在这些字段可复现实验后，MSE、MAE 和平滑性指标才具有可比性。
+
+\section{结果分析与方法比较}
+
+需要说明的是，当前结果主要来自 ROS/RVIZ 可视化仿真，能够支持对三类方法进行定性比较，但尚不足以给出严格的定量排序。因此，本节将“可视化现象”和“数值解释”分开表述：前者说明图中可观察到的轨迹平滑性、偏离和急转现象，后者说明这些现象可能对应的截断误差、历史状态利用和通信丢包补偿机制。后续若补充 rosbag 日志和重复实验，可进一步用式 \eqref{eq:mse-mae} 与式 \eqref{eq:smooth} 计算统计指标。
+
+本节同时使用两类图表。第一类来自已有 ODE 动力学基线，以细步长 RK4 作为参考解，输出 Euler 与 RK4 的误差、耗时和轨迹序列；第二类依据 rosbag 仿真采样结果重绘，用于说明二阶 Adams-Bashforth 在弱网通信预测中的作用和边界。由于本地工作区未包含原始 rosbag、频谱数据或 21 个视频文件，后文新增图仅作为“采样参数的论文风格重绘示意”，不伪装为原始数据复算。
+
+\subsection{欧拉法测试结果}
+欧拉法在仿真中表现出典型的低阶方法特征：轨迹更新直接、响应迅速，但面对绕树避障等强非线性高动态过程时，单步斜率无法准确表示整个控制周期内的真实变化。随着步数增加，局部误差累积为明显的全局偏差，表现为轨迹漂移、急转和震荡。
+
+从数值分析角度解释，欧拉法把每个步长内的状态变化近似为一条直线，而无人机绕障轨迹往往具有连续曲率。若步长较大，直线近似与真实曲线之间的差距会被不断累积。当无人机已经偏离目标轨迹超过一定阈值时，仿真中的“模拟拉力”会强制将其拉回，这便形成了图中可见的急转现象。该现象并不只是视觉上的路径不平滑，它意味着控制系统在短时间内需要输出较大的姿态和速度修正。
+
+对于 Lipschitz 常数为 $L$ 的光滑问题，Euler 全局误差可概括为
+\begin{equation}
+  \|\bm p(T)-\hat{\bm p}_N\|\leq C h\frac{e^{LT}-1}{L}.
+  \label{eq:euler-global-bound}
+\end{equation}
+式 \eqref{eq:euler-global-bound} 说明，在总仿真时间 $T$ 固定时，减小步长能线性降低全局误差；但若动力学非线性增强导致 $L$ 增大，误差传播也会更快。
+
+欧拉法的另一个问题是对步长较敏感。若将 $h$ 减小，误差可以下降，但计算频率随之上升；若保持较大步长，则误差可能在障碍物密集区域迅速放大。因此，欧拉法更适合作为基线方法或用于状态变化平缓的低速任务，而不适合作为高动态集群绕障的主要积分器。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{euler_motion_rviz.png}
+  \caption{Euler 积分器驱动下的多机动态仿真运动画面。}
+  \label{fig:euler-result}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.78\textwidth]{quant_trajectory_overlay.png}
+  \caption{Euler、RK4 与历史多步积分基线在同一动力学基准场景下的轨迹投影。}
+  \label{fig:quant-trajectory-overlay}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.76\textwidth]{quant_error_timeseries.png}
+  \caption{Euler、RK4 与历史多步积分基线相对于细步长参考解的位置误差。该图用于说明积分阶数差异，不作为通信预测主结果。}
+  \label{fig:quant-error-timeseries}
+\end{figure}
+
+\subsection{RK4 测试结果}
+RK4 通过四次斜率采样降低截断误差，更适合处理短时间内曲率变化明显的轨迹。在现有 RVIZ 可视化结果中，RK4 相比欧拉法表现出更平滑的轨迹跟随现象，说明多斜率采样有助于降低复杂曲线轨迹中的截断误差。该判断目前属于定性观察，后续仍需在相同步长、相同障碍物分布和相同通信条件下，通过 MSE、MAE、二阶差分平滑性和单步耗时等指标进行验证。
+
+在仿真现象中，RK4 的轨迹更接近规划路径，说明多斜率加权能够更好估计一个控制周期内的平均运动趋势。尤其在无人机需要穿过障碍物间隙时，路径曲率变化较快，RK4 对中间状态的采样能提前捕捉转弯趋势，从而减少轨迹滞后。对于要求队形美观和轨迹平滑的灯光秀场景，RK4 的优势会更加明显。
+
+同样在光滑问题假设下，RK4 的全局误差界可写为
+\begin{equation}
+  \|\bm p(T)-\hat{\bm p}_N\|\leq C h^4\frac{e^{LT}-1}{L}.
+  \label{eq:rk4-global-bound}
+\end{equation}
+这给出了 RK4 在理论上优于 Euler 的原因。但本次动力学基线还包含姿态正交化、地面约束和电机一阶动态，因此图 \ref{fig:quant-mse-dt} 中的实测斜率只作为该仿真设置下的经验结果，而不替代理想理论阶数。
+
+不过，RK4 的改进主要来自更准确的动力学积分，而不是通信预测。当邻机状态缺失时，RK4 仍需要一个可用的当前状态作为输入。因此，在通信可靠、机载算力允许的条件下，RK4 是较优选择；而在丢包频繁的弱网环境中，还需要与状态估计或多步预测方法结合。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{rk4_motion_rviz.png}
+  \caption{RK4 积分器驱动下的多机动态仿真运动画面。}
+  \label{fig:rk4-result}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.72\textwidth]{quant_mse_vs_dt.png}
+  \caption{不同步长下的 MSE 对比。}
+  \label{fig:quant-mse-dt}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.84\textwidth]{quant_smoothness_cost.png}
+  \caption{轨迹平滑性与单步耗时对比。}
+  \label{fig:quant-smoothness-cost}
+\end{figure}
+
+\subsection{Adams-Bashforth 通信预测结果}
+Adams-Bashforth 多步法的工程价值主要体现在弱网环境中的连续预测。它缓存过去若干次离散状态，并用多项式外推未来状态。在无人机互传位置信息出现丢包时，二阶 Adams-Bashforth 可利用历史速度趋势填补短时空白，减少控制输入突然中断造成的姿态跳变。
+
+从算法机制上看，Adams 法把历史斜率视为对未来变化趋势的线索。当无人机在短时间内保持相对平滑运动时，过去几帧状态能够提供较强预测能力。对于集群系统，这意味着即使某一帧通信数据缺失，控制器也能根据最近的状态序列估计邻机位置，继续维持队形约束。与简单保持上一帧状态相比，多步外推通常能更好反映运动方向和速度变化。
+
+Adams 法也存在边界条件。首先，它需要至少一帧历史速度作为启动基础。其次，若无人机突然急转或遭遇强扰动，历史趋势可能不再适用于未来，外推误差会增大。再次，二阶项本质上包含速度差分，在传感器噪声和物理引擎微振动存在时会放大高频成分。因此，Adams 法更适合作为弱网补偿模块，而不是在所有场景下完全替代高阶单步法。后续实验还应记录通信恢复后的校正误差，防止短时外推误差在长时间飞行中继续累积。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{adams_motion_rviz.png}
+  \caption{Adams 多步外推相关的多机动态仿真运动画面。}
+  \label{fig:adams-result}
+\end{figure}
+
+\subsection{综合讨论}
+从仿真现象看，欧拉法适合用于控制链路的快速验证和算力极低的边缘节点，但不宜作为复杂绕障场景的主要积分方法。RK4 对非线性轨迹的刻画能力更强，适合通信可靠、控制周期允许多次动力学函数评估的场景。Adams 多步法则在通信预测问题上具有独特优势，尤其适合无人机集群中“过去状态可用、当前通信不稳定”的工程条件。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.70\textwidth]{quant_rpm_energy_bar.png}
+  \caption{电机指令强度代理指标。}
+  \label{fig:quant-rpm-energy}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.74\textwidth]{quant_runtime_vs_swarm_size.png}
+  \caption{集群规模与计算耗时的线性外推。}
+  \label{fig:quant-runtime-size}
+\end{figure}
+
+若从工程部署角度排序，三类方法的适用条件可概括如下：当任务要求低成本、低复杂度和短周期更新时，可采用欧拉法作为基线；当任务强调轨迹精度、姿态平滑和绕障稳定性时，RK4 更具优势；当任务强调弱网鲁棒性、短时丢包补偿和状态连续预测时，Adams 多步法更符合无人机集群通信场景。
+
+\begin{table}[H]
+  \centering
+  \caption{弱网场景下 Euler 与 Adams 通信预测对比}
+  \label{tab:weak-network-compare}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.5cm} X X X}
+    \toprule
+    方法 & 信息来源 & 丢包期间行为 & 主要风险 \\
+    \midrule
+    Euler/保持上一帧 & 当前状态或上一帧状态 & 容易形成滞后直线外推，误差随丢包时长快速增大 & 无法利用历史曲率，急转时误差较大 \\
+    RK4 & 当前动力学状态 & 当前状态可靠时积分精度高，但无法自动补齐缺失邻机状态 & 弱网下仍需要外部状态估计模块 \\
+    Adams-Bashforth 2 & 当前与上一帧速度 & 可利用历史趋势进行短时外推，适合平滑运动下的弱网补偿 & 速度噪声和突变机动会被差分项放大，需要滤波 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{通信质量数据集与频域稳定性分析}
+
+\subsection{rosbag 采样与第一视角路径}
+弱网预测问题可进一步扩展为数据集采集问题。为了避免在读取第一视角状态时干扰 EGO 规划器的运行节拍，采样架构采用旁路监听与独立广播：原始无人机里程计节点继续服务规划闭环，额外建立 Euler 预测节点和 Adams 预测节点，同步输出预测轨迹。采样命令可概括为
+\begin{quote}
+  \small\ttfamily
+  ros2 bag record /drone\_0\_visual\_slam/odom\\
+  /euler\_predict\_traj\\
+  /adams\_predict\_traj
+\end{quote}
+仿真采样中先给出单机第一视角路径的 4183 个采样点，随后通过无人机本体、Euler 预测和 Adams 预测三类节点形成 9444 组数据。本文将这些数字视为 ROS/RVIZ 与 rosbag 仿真采样结果，而不是实机飞行日志。
+
+\begin{table}[H]
+  \centering
+  \caption{第一视角数据集摘要}
+  \label{tab:fpv-dataset-summary}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3.3cm} >{\centering\arraybackslash}p{3.0cm} X}
+    \toprule
+    项目 & 数值或来源 & 说明 \\
+    \midrule
+    单机第一视角采样 & 4183 个采样点 & 用于观察一条复杂路径中的时间戳、位置坐标和步长变化 \\
+    三节点预测数据 & 9444 组数据 & 包含无人机本体、Euler 预测和 Adams 预测节点 \\
+    路径长度 & 接近 80 m & 用于放大长距离累积误差 \\
+    高度变化 & 高度差 $>10$ m，爬坡 3 次 & 用于观察三维运动中的预测稳定性 \\
+    大角度转弯 & $>90^\circ$ 转弯 8 次 & 用于检验 Euler 线性外推和 Adams 曲率拟合差异 \\
+    数据集扩展 & 21 个第一视角视频与 rosbag 预测数据集 & 当前本地未含原始文件，本文只按采样参数重绘示意 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+在展示预测效果时，二维展示中选择舍弃 $z$ 方向，只保留二维平面投影。这一处理并不是忽略高度变化，而是为了让二维预测箭头、真实路径和误差阈值处在同一可视平面内，便于比较 Euler 与 Adams 的横向偏差。图 \ref{fig:fpv-prediction-overlay} 根据采样路径形态和节点关系重绘，图中路径与误差趋势用于说明方法差异，不替代原始 rosbag 复算。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{fpv_prediction_overlay.png}
+  \caption{第一视角路径预测的二维投影示意。该图按仿真采样参数重绘。}
+  \label{fig:fpv-prediction-overlay}
+\end{figure}
+
+\subsection{弱网中断与误差阈值}
+通信质量检测的核心流程包括四步。首先，订阅领航机 odom 节点并取得同一时间戳下的真实坐标；其次，将历史状态写入 \texttt{HistoryQueue}，并人为切断一段时间的真实状态转发以模拟遮挡或强干扰；再次，触发本地 ODE 预测节点，分别输出 Euler 与 Adams 预测坐标；最后，将预测位置与真实位置对齐，按照式 \eqref{eq:communication-error} 计算二维欧氏误差。
+
+本文采用 0.2 m 与 0.5 m 两条阈值线解释通信质量：当误差小于 0.2 m 时，预测轨迹与真实轨迹在可视化上较接近；当误差位于 0.2 m 到 0.5 m 之间时，预测偏差开始显现但仍处在课程仿真容忍范围；当误差超过 0.5 m 时，若控制器直接追踪该预测点，可能引入明显甩尾或碰撞风险。需要强调的是，这些阈值服务于课程仿真判据，不是飞行安全认证标准。
+
+在 10 s 绝对通信中断的仿真采样中，Euler 外推由于缺少加速度和曲率信息，约在 2.5 s 后超过 0.5 m 风险阈值；二阶 Adams-Bashforth 由于利用历史速度差分拟合曲率，误差峰值约为 0.23-0.25 m。图 \ref{fig:fpv-packet-loss} 按仿真采样数字重绘，显示该结论只在当前路径、采样频率和阈值设置下成立。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.82\textwidth]{fpv_packet_loss_10s.png}
+  \caption{10 s 弱网中断下的二维预测误差示意。该图按仿真采样数字重绘。}
+  \label{fig:fpv-packet-loss}
+\end{figure}
+
+\subsection{频域诊断与低通滤波}
+仅从时域位置误差看，Adams 预测似乎更接近真实轨迹；但频域诊断进一步指出，Adams 的速度差分项会放大物理引擎微小噪声。由于差分求导具有高通特性，历史速度中的白噪声和微振动可能被二阶项放大，并表现为预测速度在相平面中的异常震荡。若将这种高频预测信号直接送入底层 PID 飞控，执行器可能接收到放大的高频目标变化。
+
+因此，本文将 Adams 的优势与风险分开表述：其低频轨迹跟踪能力较好，适合弯折路径和短时弱网补偿；其高频端可能出现增益放大，需要后端滤波和通信恢复校正。采样分析中通过时域重采样、Welch 交叉谱密度、经验传递函数估计和 Nyquist 映射观察到未滤波 Adams 的高频增益可接近 20 倍。本文将其作为仿真数据分析结果记录，不推断为所有无人机平台的一般定量规律。
+
+为抑制高频增益，本文采用二阶零相移 Butterworth 低通滤波器近似状态滤波效果：
+\begin{equation}
+  |H(f)|=\frac{1}{\sqrt{1+(f/f_c)^{4}}},
+  \label{eq:butterworth}
+\end{equation}
+其中 $f_c$ 为截止频率。该滤波器不改变本文的 ODE 主线，而是作为 Adams 预测输出端的软件层后处理模块。图 \ref{fig:fpv-frequency-stability} 按频域采样结论重绘：未滤波 Adams 在高频端增益明显放大，Euler 增益较低但轨迹跟踪能力不足，滤波后 Adams 的高频响应被压回较安全区域，同时保留低频跟踪能力。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.92\textwidth]{fpv_frequency_stability.png}
+  \caption{Adams 预测输出的频域稳定性示意。该图按频域采样结论重绘。}
+  \label{fig:fpv-frequency-stability}
+\end{figure}
+
+\FloatBarrier
+
+\section{工程适配建议}
+
+\subsection{不同任务场景下的方法选择}
+综合比较可见，三类数值方法并不存在绝对优劣，而是适合不同工程约束。欧拉法的价值在于简单、可解释、易部署，适合作为算法验证阶段的基线，也适合对精度要求不高的辅助预测。RK4 的价值在于高精度和平滑性，适合动力学变化强、路径曲率高、通信状态可靠的飞行任务。二阶 Adams-Bashforth 的价值在于历史速度趋势利用能力，适合通信不稳定但运动趋势短时连续的集群协同任务；其输出端需要滤波、异常检测和通信恢复后的真实观测校正。
+
+如果将无人机集群任务分为“规划-通信-控制-执行”四个环节，则 RK4 更偏向解决“控制-执行”之间的连续动力学积分问题，Adams-Bashforth 更偏向解决“通信-控制”之间的短时信息缺失问题，欧拉法则可作为贯穿各环节的低成本基线。实际系统中可以采用混合策略：正常飞行时使用 RK4 提升轨迹积分精度，通信丢包时启动二阶 Adams-Bashforth 外推，外推结果经过低通滤波后再送入控制器，低算力备份模式下退化为欧拉法维持基本控制。
+
+混合策略可形式化为如下决策逻辑：
+\begin{equation}
+  \text{Integrator}=
+  \begin{cases}
+    \text{RK4}, & \kappa>\kappa_{\mathrm{th}}\quad \text{路径曲率大},\\
+    \text{AB2+LPF}, & p_{\mathrm{loss}}>p_{\mathrm{th}}\quad \text{通信丢包},\\
+    \text{Euler}, & C_{\mathrm{CPU}}>C_{\mathrm{th}}\quad \text{算力告急},\\
+    \text{RK4}, & \text{正常巡航}.
+  \end{cases}
+  \label{eq:hybrid-policy}
+\end{equation}
+其中 $\kappa$ 表示路径曲率，$p_{\mathrm{loss}}$ 表示丢包率，$C_{\mathrm{CPU}}$ 表示计算负载，AB2+LPF 表示二阶 Adams-Bashforth 外推后级联低通滤波。式 \eqref{eq:hybrid-policy} 不是已验证的控制律，而是从本课程仿真观察中归纳出的工程选型框架。
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.84\textwidth]{hybrid_integrator_strategy.png}
+  \caption{三类方法在典型任务中的适配关系。}
+  \label{fig:hybrid-strategy}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \caption{三类方法在无人机集群任务中的适配建议}
+  \label{tab:deployment}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.8cm} X X}
+    \toprule
+    方法 & 推荐应用场景 & 不推荐场景 \\
+    \midrule
+    欧拉法 & 低速巡航、快速原型验证、低算力备份控制 & 高速绕障、强非线性轨迹、长时间高精度编队 \\
+    RK4 & 理想通信条件下的轨迹跟随、复杂曲线飞行、仿真精细验证 & 极端低算力平台、严重丢包且缺少状态估计的场景 \\
+    Adams-Bashforth 2 + 滤波 & 弱网环境、短时丢包补偿、邻机状态连续预测 & 历史状态噪声大、机动突变频繁、缺少滤波或恢复校正的场景 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{场景-方法适配推荐表}
+  \label{tab:scenario-method}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{3.0cm} X X}
+    \toprule
+    场景 & 首选方法 & 配套条件 \\
+    \midrule
+    低速巡航与教学演示 & Euler & 步长较小，轨迹曲率低，允许较大误差 \\
+    障碍物密集绕行 & RK4 & 当前状态可靠，机载计算周期允许多次动力学评估 \\
+    短时通信丢包 & Adams-Bashforth 2 + 低通滤波 & 历史状态连续，输出端滤波，通信恢复后及时校正 \\
+    大规模集群低算力节点 & Euler/RK4 混合 & 关键节点使用 RK4，边缘节点按负载降级 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{方法局限与风险}
+结合前文仿真框架与可视化结果，本文主要讨论三类误差。第一是截断误差，即用离散公式近似连续微分方程时产生的理论误差；欧拉法在这一方面最明显。第二是通信误差，包括延迟、丢包和拓扑变化；这类误差会影响一致性协议的输入。第三是仿真约束误差，例如 URDF 模型、路径规划器和模拟拉力共同构成的仿真环境与真实飞行之间仍有差距。若后续扩展到实机实验，还需要另行记录风扰、传感器噪声、定位误差和执行机构迟滞等因素，本文不提前给出这些因素的实测结论。
+
+这些误差会相互耦合。例如通信延迟会使控制器使用旧状态，旧状态经过低阶积分后又会产生更大的位置偏差；位置偏差会触发更强控制修正，进而加剧姿态变化。若数值方法本身不够平滑，误差链条便可能被放大。本文之所以强调轨迹连续性，是因为在无人机系统中，平滑误差往往比突变误差更容易被控制器吸收。
+
+总体误差可写为
+\begin{equation}
+  \varepsilon_{\mathrm{total}}=
+  \varepsilon_{\mathrm{trunc}}+\varepsilon_{\mathrm{comm}}+\varepsilon_{\mathrm{model}}+\varepsilon_{\mathrm{coupling}},
+  \label{eq:total-error}
+\end{equation}
+其中 $\varepsilon_{\mathrm{trunc}}$ 为数值截断误差，$\varepsilon_{\mathrm{comm}}$ 为通信误差，$\varepsilon_{\mathrm{model}}$ 为模型误差，$\varepsilon_{\mathrm{coupling}}$ 为多环节耦合误差。其传播链可概括为
+\begin{equation}
+  \varepsilon_{\mathrm{coupling}}:
+  \text{位置误差}\xrightarrow{\times K_p}\text{速度修正}
+  \xrightarrow{\text{姿态环}}\text{角速度变化}
+  \xrightarrow{\text{执行器}}\text{抖动}.
+  \label{eq:error-chain}
+\end{equation}
+因此，积分器选型不应只看单步误差，还需要关注误差是否平滑、是否容易被控制器吸收，以及是否会在通信缺口中继续放大。
+
+\section{总结与展望}
+
+本文围绕欧拉法、RK4 与二阶 Adams-Bashforth，分析了 ODE 数值解法在无人机集群轨迹预测、编队控制、通信丢包补偿和 ROS/RVIZ 仿真中的工程作用。与单纯比较公式阶数不同，本文将数值方法放入“规划-通信-控制-执行”链路中讨论：欧拉法适合作为低算力基线和快速原型，RK4 适合当前状态可靠且路径曲率变化明显的轨迹积分，二阶 Adams-Bashforth 适合利用历史速度趋势缓解短时通信中断。
+
+基于当前仿真、采样和参数化分析，本文已经形成了从数值公式到无人机集群工程链路的完整解释框架。后续工作可以在这一框架上继续扩展定量实验协议：在相同场景下扫描步长 $h$、通信延迟 $\tau$、丢包率 $p_{\mathrm{loss}}$ 和集群规模 $M$，记录 MSE、MAE、平滑性、单步耗时、恢复时间和频域增益。进一步地，可将 ROS 仿真中的积分器节点独立封装，使用 rosbag 回放相同输入，从而让三类方法在统一数据流下进行更细致的对比。
+
+从课程项目角度看，本文完成了从理论公式到工程场景的迁移。欧拉法、RK4 和 Adams-Bashforth 法原本是数值分析教材中的基础内容，但在无人机集群中分别对应低成本推进、高精度积分和历史状态预测三类工程能力。这说明数值分析并非孤立的数学推导，而是可以直接服务于机器人系统设计、仿真平台搭建和控制算法选型。
+
+未来若继续扩展本项目，可进一步建立定量实验表格。例如设置固定障碍物密度和无人机数量，分别改变步长 $h$，统计 Euler 与 RK4 的 MSE、MAE 和平滑性指标；再固定步长，改变丢包率和中断时长，观察二阶 Adams-Bashforth 相对 Euler 的弱网补偿优势以及滤波前后的频域增益。若能结合真实飞控日志，还可以分析数值预测误差与电机输出、姿态角变化之间的关系，从而把数值分析结果进一步转化为飞行安全指标。
+
+此外，还可以探索混合积分策略。对于普通航段，系统使用计算量较低的方法；进入障碍物密集区或急转弯区时自动切换到 RK4；检测到通信质量下降时启动二阶 Adams-Bashforth 外推，并在输出端级联低通滤波；通信恢复后再利用观测值进行校正。这样的自适应策略能把三类方法的优势组合起来，也更符合无人机集群复杂任务中的实际需求。
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.6em,itemsep=0.2em]
+  \item Butcher, J. C. \textit{Numerical Methods for Ordinary Differential Equations}. 3rd ed. Wiley, 2016. DOI: \url{https://doi.org/10.1002/9781119121534}.
+  \item Hairer, E., Norsett, S. P., and Wanner, G. \textit{Solving Ordinary Differential Equations I: Nonstiff Problems}. 2nd rev. ed. Springer, 1993. DOI: \url{https://doi.org/10.1007/978-3-540-78862-1}.
+  \item Ascher, U. M. and Petzold, L. R. \textit{Computer Methods for Ordinary Differential Equations and Differential-Algebraic Equations}. SIAM, 1998. DOI: \url{https://doi.org/10.1137/1.9781611971392}.
+  \item Olfati-Saber, R., Fax, J. A., and Murray, R. M. Consensus and cooperation in networked multi-agent systems. \textit{Proceedings of the IEEE}, 95(1):215-233, 2007. DOI: \url{https://doi.org/10.1109/JPROC.2006.887293}.
+  \item Olfati-Saber, R. and Murray, R. M. Consensus problems in networks of agents with switching topology and time-delays. \textit{IEEE Transactions on Automatic Control}, 49(9):1520-1533, 2004. DOI: \url{https://doi.org/10.1109/TAC.2004.834113}.
+  \item Ren, W. and Beard, R. W. Consensus seeking in multiagent systems under dynamically changing interaction topologies. \textit{IEEE Transactions on Automatic Control}, 50(5):655-661, 2005. DOI: \url{https://doi.org/10.1109/TAC.2005.846556}.
+  \item Jadbabaie, A., Lin, J., and Morse, A. S. Coordination of groups of mobile autonomous agents using nearest neighbor rules. \textit{IEEE Transactions on Automatic Control}, 48(6):988-1001, 2003. DOI: \url{https://doi.org/10.1109/TAC.2003.812781}.
+  \item Hespanha, J. P., Naghshtabrizi, P., and Xu, Y. A survey of recent results in networked control systems. \textit{Proceedings of the IEEE}, 95(1):138-162, 2007. DOI: \url{https://doi.org/10.1109/JPROC.2006.887288}.
+  \item Chung, S.-J., Paranjape, A. A., Dames, P., Shen, S., and Kumar, V. A survey on aerial swarm robotics. \textit{IEEE Transactions on Robotics}, 34(4):837-855, 2018. DOI: \url{https://doi.org/10.1109/TRO.2018.2857475}.
+  \item Mahony, R., Kumar, V., and Corke, P. Multirotor aerial vehicles: Modeling, estimation, and control of quadrotor. \textit{IEEE Robotics and Automation Magazine}, 19(3):20-32, 2012. DOI: \url{https://doi.org/10.1109/MRA.2012.2206474}.
+  \item Lee, T., Leok, M., and McClamroch, N. H. Geometric tracking control of a quadrotor UAV on SE(3). In \textit{49th IEEE Conference on Decision and Control}, 2010, pp. 5420-5425. DOI: \url{https://doi.org/10.1109/CDC.2010.5717652}.
+  \item Mellinger, D. and Kumar, V. Minimum snap trajectory generation and control for quadrotors. In \textit{2011 IEEE International Conference on Robotics and Automation}, 2011. DOI: \url{https://doi.org/10.1109/ICRA.2011.5980409}.
+  \item Zhou, B., Gao, F., Wang, L., Liu, C., and Shen, S. Robust and efficient quadrotor trajectory generation for fast autonomous flight. \textit{IEEE Robotics and Automation Letters}, 4(4):3529-3536, 2019. DOI: \url{https://doi.org/10.1109/LRA.2019.2927938}.
+  \item Usenko, V., von Stumberg, L., Pangercic, A., and Cremers, D. Real-time trajectory replanning for MAVs using uniform B-splines and a 3D circular buffer. In \textit{2017 IEEE/RSJ International Conference on Intelligent Robots and Systems}, 2017, pp. 215-222. DOI: \url{https://doi.org/10.1109/IROS.2017.8202160}.
+  \item Zhou, X., Wang, Z., Ye, H., Xu, C., and Gao, F. EGO-Planner: An ESDF-free gradient-based local planner for quadrotors. \textit{IEEE Robotics and Automation Letters}, 6(2):478-485, 2021. DOI: \url{https://doi.org/10.1109/LRA.2020.3047728}.
+  \item Zhou, X., Zhu, J., Zhou, H., Xu, C., and Gao, F. EGO-Swarm: A fully autonomous and decentralized quadrotor swarm system in cluttered environments. In \textit{2021 IEEE International Conference on Robotics and Automation}, 2021. DOI: \url{https://doi.org/10.1109/ICRA48506.2021.9561902}.
+  \item Quigley, M., Conley, K., Gerkey, B., Faust, J., Foote, T., Leibs, J., Wheeler, R., and Ng, A. Y. ROS: an open-source Robot Operating System. ICRA Workshop on Open Source Software, 2009. URL: \url{https://robotics.stanford.edu/~mquigley/papers/icra2009-ros.pdf}.
+  \item Macenski, S., Foote, T., Gerkey, B., Lalancette, C., and Woodall, W. Robot Operating System 2: Design, architecture, and uses in the wild. \textit{Science Robotics}, 7(66), 2022. DOI: \url{https://doi.org/10.1126/scirobotics.abm6074}.
+  \item Open Robotics. \textit{rosbag2: Rolling documentation}. 2026. URL: \url{https://docs.ros.org/en/rolling/p/rosbag2/index.html}.
+  \item Welch, P. D. The use of fast Fourier transform for the estimation of power spectra: A method based on time averaging over short, modified periodograms. \textit{IEEE Transactions on Audio and Electroacoustics}, 15(2):70-73, 1967. DOI: \url{https://doi.org/10.1109/TAU.1967.1161901}.
+  \item Butterworth, S. On the theory of filter amplifiers. \textit{Experimental Wireless and the Wireless Engineer}, 7:536-541, 1930. URL: \url{https://cir.nii.ac.jp/crid/1572261550684507392}.
+  \item Gustafsson, F. Determining the initial states in forward-backward filtering. \textit{IEEE Transactions on Signal Processing}, 44(4):988-992, 1996. DOI: \url{https://doi.org/10.1109/78.492552}.
+\end{enumerate}
+
+\end{document}

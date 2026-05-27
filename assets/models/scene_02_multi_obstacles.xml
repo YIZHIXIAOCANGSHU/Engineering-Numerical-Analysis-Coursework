@@ -1,0 +1,58 @@
+<mujoco model="simple_ur5e">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.01" gravity="0 0 -9.81"/>
+
+  <default>
+    <joint limited="true" damping="0.2"/>
+    <geom contype="1" conaffinity="1" friction="0.8 0.1 0.1"/>
+    <default class="robot">
+      <geom type="capsule" size="0.035" rgba="0.25 0.45 0.85 1"/>
+    </default>
+    <default class="obstacle">
+      <geom rgba="0.9 0.25 0.15 0.75"/>
+    </default>
+  </default>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".18 .18 .18" rgb2=".24 .24 .24" width="512" height="512"/>
+    <material name="grid" texture="grid" texrepeat="2 2" texuniform="true" reflectance="0.1"/>
+  </asset>
+
+  <worldbody>
+    <light name="key" pos="0 -3 3" dir="0 1 -1"/>
+    <geom name="floor" type="plane" size="2 2 0.02" material="grid" contype="0" conaffinity="0"/>
+    <body name="base" pos="0 0 0.08">
+      <geom name="base_geom" type="cylinder" size="0.09 0.08" rgba="0.15 0.15 0.17 1" contype="0" conaffinity="0"/>
+      <body name="link_1" pos="0 0 0.08">
+        <joint name="shoulder_pan" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+        <geom name="robot_link_1" class="robot" fromto="0 0 0 0 0 0.13"/>
+        <body name="link_2" pos="0 0 0.13">
+          <joint name="shoulder_lift" type="hinge" axis="0 1 0" range="-2.6 2.6"/>
+          <geom name="robot_link_2" class="robot" fromto="0 0 0 0.30 0 0"/>
+          <body name="link_3" pos="0.30 0 0">
+            <joint name="elbow" type="hinge" axis="0 1 0" range="-2.8 2.8"/>
+            <geom name="robot_link_3" class="robot" fromto="0 0 0 0.25 0 0"/>
+            <body name="link_4" pos="0.25 0 0">
+              <joint name="wrist_1" type="hinge" axis="0 1 0" range="-3.14159 3.14159"/>
+              <geom name="robot_link_4" class="robot" fromto="0 0 0 0.16 0 0"/>
+              <body name="link_5" pos="0.16 0 0">
+                <joint name="wrist_2" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+                <geom name="robot_link_5" class="robot" fromto="0 0 0 0.08 0 0"/>
+                <body name="link_6" pos="0.08 0 0">
+                  <joint name="wrist_3" type="hinge" axis="1 0 0" range="-3.14159 3.14159"/>
+                  <geom name="robot_link_6" class="robot" fromto="0 0 0 0.08 0 0"/>
+                  <site name="ee_site" pos="0.09 0 0" size="0.018" rgba="0.1 0.9 0.25 1"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom name="target_marker" type="sphere" pos="0.42 -0.28 0.48" size="0.045" rgba="0 0.9 0.2 0.55" contype="0" conaffinity="0"/>
+    <site name="target_site" pos="0.42 -0.28 0.48" size="0.055" rgba="0 1 0.15 1"/>
+    <geom name="box_left" type="box" pos="0.32 0.1 0.24" size="0.06 0.07 0.12" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="sphere_high" type="sphere" pos="0.3 -0.18 0.6" size="0.06" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="cyl_guard" type="cylinder" pos="0.55 -0.12 0.2" size="0.05 0.15" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+  </worldbody>
+</mujoco>

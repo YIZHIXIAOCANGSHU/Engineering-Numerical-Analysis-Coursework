@@ -1,0 +1,67 @@
+<mujoco model="simple_ur5e">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.01" gravity="0 0 -9.81"/>
+
+  <default>
+    <joint limited="true" damping="0.2"/>
+    <geom contype="1" conaffinity="1" friction="0.8 0.1 0.1"/>
+    <default class="robot">
+      <geom type="capsule" size="0.035" rgba="0.25 0.45 0.85 1"/>
+    </default>
+    <default class="obstacle">
+      <geom rgba="0.9 0.25 0.15 0.75"/>
+    </default>
+  </default>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".18 .18 .18" rgb2=".24 .24 .24" width="512" height="512"/>
+    <material name="grid" texture="grid" texrepeat="2 2" texuniform="true" reflectance="0.1"/>
+  </asset>
+
+  <worldbody>
+    <light name="key" pos="0 -3 3" dir="0 1 -1"/>
+    <geom name="floor" type="plane" size="2 2 0.02" material="grid" contype="0" conaffinity="0"/>
+    <body name="base" pos="0 0 0.08">
+      <geom name="base_geom" type="cylinder" size="0.09 0.08" rgba="0.15 0.15 0.17 1" contype="0" conaffinity="0"/>
+      <body name="link_1" pos="0 0 0.08">
+        <joint name="shoulder_pan" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+        <geom name="robot_link_1" class="robot" fromto="0 0 0 0 0 0.13"/>
+        <body name="link_2" pos="0 0 0.13">
+          <joint name="shoulder_lift" type="hinge" axis="0 1 0" range="-2.6 2.6"/>
+          <geom name="robot_link_2" class="robot" fromto="0 0 0 0.30 0 0"/>
+          <body name="link_3" pos="0.30 0 0">
+            <joint name="elbow" type="hinge" axis="0 1 0" range="-2.8 2.8"/>
+            <geom name="robot_link_3" class="robot" fromto="0 0 0 0.25 0 0"/>
+            <body name="link_4" pos="0.25 0 0">
+              <joint name="wrist_1" type="hinge" axis="0 1 0" range="-3.14159 3.14159"/>
+              <geom name="robot_link_4" class="robot" fromto="0 0 0 0.16 0 0"/>
+              <body name="link_5" pos="0.16 0 0">
+                <joint name="wrist_2" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+                <geom name="robot_link_5" class="robot" fromto="0 0 0 0.08 0 0"/>
+                <body name="link_6" pos="0.08 0 0">
+                  <joint name="wrist_3" type="hinge" axis="1 0 0" range="-3.14159 3.14159"/>
+                  <geom name="robot_link_6" class="robot" fromto="0 0 0 0.08 0 0"/>
+                  <site name="ee_site" pos="0.09 0 0" size="0.018" rgba="0.1 0.9 0.25 1"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom name="target_marker" type="sphere" pos="0.62 0.02 0.43" size="0.045" rgba="0 0.9 0.2 0.55" contype="0" conaffinity="0"/>
+    <site name="target_site" pos="0.62 0.02 0.43" size="0.055" rgba="0 1 0.15 1"/>
+    <geom name="maze_insert_frame_left" type="box" pos="0.79227548 0.57603724 0.39" size="0.05 0.0225 0.21" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_insert_frame_right" type="box" pos="0.96541855 0.059271837 0.39" size="0.05 0.0225 0.21" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_insert_frame_top" type="box" pos="0.87884701 0.31765454 0.58" size="0.05 0.295 0.02" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_insert_frame_bottom" type="box" pos="0.87884701 0.31765454 0.205" size="0.05 0.295 0.015" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_00_sphere" type="sphere" pos="0.53981347 0.49468709 0.50921781" size="0.018559016" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_01_box" type="box" pos="0.8552703 -0.42666029 0.5361588" size="0.050607457 0.042590666 0.052390877" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_02_sphere" type="sphere" pos="0.59613847 0.37920833 0.60330851" size="0.027766256" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_03_box" type="box" pos="0.79490924 -0.41776582 0.50807009" size="0.040341945 0.035110816 0.046010839" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_04_sphere" type="sphere" pos="0.53401209 0.3775732 0.47291596" size="0.021651402" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_05_box" type="box" pos="0.83992615 -0.4477864 0.59073435" size="0.054944539 0.037200028 0.038706749" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_06_sphere" type="sphere" pos="0.56721312 0.3761089 0.61468313" size="0.01962521" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+    <geom name="maze_float_07_box" type="box" pos="0.82268131 -0.40250255 0.40263007" size="0.038413174 0.050897014 0.036709691" quat="0.16094503 0 0 -0.98696337" rgba="0.9 0.25 0.15 0.75" contype="1" conaffinity="1"/>
+  </worldbody>
+</mujoco>

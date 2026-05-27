@@ -1,0 +1,120 @@
+global_seed: 42
+robot:
+  name: simple_ur5e
+  model_xml: assets/models/simple_ur5e.xml
+  ee_site: ee_site
+  joint_names: [shoulder_pan, shoulder_lift, elbow, wrist_1, wrist_2, wrist_3]
+  q_start: [0.0, -0.65, 0.95, -0.55, 0.45, 0.0]
+scenes:
+  - id: scene_00_no_obstacle
+    seed: 20260525
+    target_position: [0.55, 0.18, 0.44]
+    obstacles: []
+  - id: scene_01_single_box
+    seed: 20260526
+    target_position: [0.47, 0.22, 0.42]
+    obstacles:
+      - type: box
+        name: box_mid
+        position: [0.35, -0.12, 0.28]
+        size: [0.14, 0.16, 0.26]
+  - id: scene_02_multi_obstacles
+    seed: 20260527
+    target_position: [0.42, -0.28, 0.48]
+    obstacles:
+      - type: box
+        name: box_left
+        position: [0.32, 0.10, 0.24]
+        size: [0.12, 0.14, 0.24]
+      - type: sphere
+        name: sphere_high
+        position: [0.30, -0.18, 0.60]
+        radius: 0.06
+      - type: cylinder
+        name: cyl_guard
+        position: [0.55, -0.12, 0.20]
+        radius: 0.05
+        height: 0.30
+  - id: scene_03_narrow_passage
+    seed: 20260528
+    target_position: [0.62, 0.02, 0.43]
+    obstacles:
+      - type: box
+        name: wall_a
+        position: [0.39, -0.23, 0.25]
+        size: [0.10, 0.08, 0.30]
+      - type: box
+        name: wall_b
+        position: [0.39, 0.23, 0.25]
+        size: [0.10, 0.08, 0.30]
+      - type: sphere
+        name: gate_top
+        position: [0.46, 0.02, 0.64]
+        radius: 0.045
+  - id: scene_04_near_singularity
+    seed: 20260529
+    target_position: [0.76, -0.06, 0.48]
+    obstacles:
+      - type: sphere
+        name: side_sphere
+        position: [0.50, 0.26, 0.34]
+        radius: 0.06
+      - type: box
+        name: side_box
+        position: [0.50, -0.28, 0.24]
+        size: [0.12, 0.12, 0.22]
+  - id: scene_05_mixed_maze_passage
+    seed: 20260601
+    target_position: [0.55, 0.03, 0.43]
+    generator:
+      type: mixed_maze
+      enabled: true
+      seed: 20260601
+      ee_start: [0.188, 0.0, 0.441]
+      gate_count: 4
+      corridor_width: 0.50
+      gate_depth: 0.14
+      wall_thickness: 0.08
+      wall_height: 0.28
+      z_center: 0.22
+      curve_amplitude: 0.08
+      path_fraction_range: [0.22, 0.68]
+      replace_existing: true
+  - id: scene_pass_through_maze
+    seed: 20260602
+    target_position: [0.62, 0.02, 0.43]
+    target_quat_wxyz: [0.44614, 0.282258, 0.366804, 0.765993]
+    generator:
+      type: mixed_maze
+      enabled: true
+      seed: 20260602
+      ee_start: auto
+      frame_mode: true
+      frame_layout: insert_target
+      gate_count: 3
+      aperture_width: 0.50
+      aperture_height: 0.34
+      frame_depth: 0.10
+      post_width: 0.045
+      beam_height: 0.04
+      bottom_height: 0.03
+      bottom_z: 0.19
+      target_depth: 0.02
+      frame_lateral_offset: -0.14
+      short_reach_distance_threshold: 0.35
+      short_reach_target_depth: 0.34
+      short_reach_frame_lateral_offset: -0.20
+      guide_obstacle_count: 0
+      guide_fraction_range: [0.50, 0.70]
+      guide_post_width: 0.055
+      guide_height: 0.25
+      floating_count: 8
+      floating_fraction_range: [0.60, 0.86]
+      floating_lateral_abs_range: [0.30, 0.52]
+      floating_forward_jitter: 0.035
+      floating_target_keepout: 0.36
+      floating_z_range: [0.40, 0.62]
+      floating_sphere_radius_range: [0.018, 0.028]
+      floating_box_size_min: [0.06, 0.06, 0.06]
+      floating_box_size_max: [0.11, 0.11, 0.11]
+      replace_existing: true

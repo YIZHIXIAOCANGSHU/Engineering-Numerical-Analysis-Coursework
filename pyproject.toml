@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arm-planning"
+version = "0.1.0"
+description = "MuJoCo and Rerun based 6-DOF arm obstacle-avoidance numerical experiment platform"
+requires-python = ">=3.10"
+dependencies = [
+  "mujoco>=3.0",
+  "rerun-sdk>=0.20",
+  "numpy>=1.23",
+  "scipy>=1.9",
+  "pandas>=1.5",
+  "matplotlib>=3.6",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+arm-planning = "arm_planning.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

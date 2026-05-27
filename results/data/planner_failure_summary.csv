@@ -1,0 +1,33 @@
+scene_id,planner,failure_category,failure_category_cn,message,count,success_rate,share
+scene_00_no_obstacle,apf,success,成功,success,50,1.0,1.0
+scene_00_no_obstacle,prm,success,成功,success,50,1.0,1.0
+scene_00_no_obstacle,rrt,success,成功,success,50,1.0,1.0
+scene_00_no_obstacle,rrt_connect,success,成功,success,50,1.0,1.0
+scene_01_single_box,apf,iteration_limit,迭代上限,max iterations reached,50,0.0,1.0
+scene_01_single_box,prm,success,成功,success,50,1.0,1.0
+scene_01_single_box,rrt,success,成功,success,50,1.0,1.0
+scene_01_single_box,rrt_connect,success,成功,success,50,1.0,1.0
+scene_02_multi_obstacles,apf,iteration_limit,迭代上限,max iterations reached,50,0.0,1.0
+scene_02_multi_obstacles,prm,success,成功,success,50,1.0,1.0
+scene_02_multi_obstacles,rrt,success,成功,success,50,1.0,1.0
+scene_02_multi_obstacles,rrt_connect,success,成功,success,50,1.0,1.0
+scene_03_narrow_passage,apf,iteration_limit,迭代上限,max iterations reached,50,0.0,1.0
+scene_03_narrow_passage,prm,success,成功,success,50,1.0,1.0
+scene_03_narrow_passage,rrt,iteration_limit,迭代上限,max iterations reached,3,0.0,0.06
+scene_03_narrow_passage,rrt,success,成功,success,47,1.0,0.94
+scene_03_narrow_passage,rrt_connect,success,成功,success,50,1.0,1.0
+scene_04_near_singularity,apf,iteration_limit,迭代上限,max iterations reached,50,0.0,1.0
+scene_04_near_singularity,prm,success,成功,success,50,1.0,1.0
+scene_04_near_singularity,rrt,iteration_limit,迭代上限,max iterations reached,1,0.0,0.02
+scene_04_near_singularity,rrt,success,成功,success,49,1.0,0.98
+scene_04_near_singularity,rrt_connect,success,成功,success,50,1.0,1.0
+scene_05_mixed_maze_passage,apf,iteration_limit,迭代上限,max iterations reached,50,0.0,1.0
+scene_05_mixed_maze_passage,prm,success,成功,success,50,1.0,1.0
+scene_05_mixed_maze_passage,rrt,success,成功,success,50,1.0,1.0
+scene_05_mixed_maze_passage,rrt_connect,success,成功,success,50,1.0,1.0
+scene_pass_through_maze,apf,iteration_limit,迭代上限,max iterations reached,50,0.0,1.0
+scene_pass_through_maze,prm,roadmap_disconnected,采样图未连通,no roadmap path,7,0.0,0.14
+scene_pass_through_maze,prm,success,成功,success,43,1.0,0.86
+scene_pass_through_maze,rrt,iteration_limit,迭代上限,max iterations reached,31,0.0,0.62
+scene_pass_through_maze,rrt,success,成功,success,19,1.0,0.38
+scene_pass_through_maze,rrt_connect,success,成功,success,50,1.0,1.0
